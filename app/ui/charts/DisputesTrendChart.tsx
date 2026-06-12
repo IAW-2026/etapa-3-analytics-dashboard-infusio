@@ -64,7 +64,7 @@ export default function DisputesTrendChart({ data }: Props) {
               backgroundColor: "#faf8f5",
               borderRadius: 8,
             }}
-            formatter={(v: number) => [v, "Disputas"]}
+            formatter={(v) => [v as number, "Disputas"]}
           />
           <ReferenceLine
             y={avg}

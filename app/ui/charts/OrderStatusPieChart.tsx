@@ -43,8 +43,8 @@ export default function OrderStatusPieChart({
             cx="50%"
             cy="50%"
             outerRadius={80}
-            label={({ percent }: { percent: number }) =>
-              `${(percent * 100).toFixed(0)}%`
+            label={({ percent }) =>
+              `${((percent ?? 0) * 100).toFixed(0)}%`
             }
             labelLine={false}
           >
@@ -59,8 +59,8 @@ export default function OrderStatusPieChart({
               backgroundColor: "#faf8f5",
               borderRadius: 8,
             }}
-            formatter={(v: number, name: string) => [
-              `${v.toLocaleString("es-AR")} (${((v / total) * 100).toFixed(1)}%)`,
+            formatter={(v, name) => [
+              `${(v as number).toLocaleString("es-AR")} (${(((v as number) / total) * 100).toFixed(1)}%)`,
               name,
             ]}
           />

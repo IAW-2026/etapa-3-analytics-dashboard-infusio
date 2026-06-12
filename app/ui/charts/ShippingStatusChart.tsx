@@ -60,8 +60,8 @@ export default function ShippingStatusChart({ data, successRate }: Props) {
               backgroundColor: "#faf8f5",
               borderRadius: 8,
             }}
-            formatter={(v: number, name: string) => [
-              `${v.toLocaleString("es-AR")} (${((v / total) * 100).toFixed(1)}%)`,
+            formatter={(v, name) => [
+              `${(v as number).toLocaleString("es-AR")} (${(((v as number) / total) * 100).toFixed(1)}%)`,
               name,
             ]}
           />

@@ -56,7 +56,7 @@ export default function CategoryRevenueChart({ data }: Props) {
               backgroundColor: "#faf8f5",
               borderRadius: 8,
             }}
-            formatter={(v: number) => [`$${v.toLocaleString("es-AR")}`, "Ingresos"]}
+            formatter={(v) => [`$${(v as number).toLocaleString("es-AR")}`, "Ingresos"]}
           />
           <Bar dataKey="revenue" radius={[4, 4, 0, 0]}>
             {data.map((_, i) => (

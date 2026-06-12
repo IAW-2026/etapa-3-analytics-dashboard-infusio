@@ -59,7 +59,7 @@ export default function RevenueAreaChart({ data }: Props) {
               backgroundColor: "#faf8f5",
               borderRadius: 8,
             }}
-            formatter={(v: number) => [`$${v.toLocaleString("es-AR")}`, "Ingresos"]}
+            formatter={(v) => [`$${(v as number).toLocaleString("es-AR")}`, "Ingresos"]}
           />
           <Area
             type="monotone"

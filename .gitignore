@@ -34,5 +34,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Claude Code — never commit plans, memory, or settings
+# Claude Code — never commit plans, memory, settings, or documentation
 .claude/
+CLAUDE.md

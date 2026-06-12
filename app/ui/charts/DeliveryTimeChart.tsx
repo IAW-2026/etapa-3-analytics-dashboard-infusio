@@ -51,7 +51,7 @@ export default function DeliveryTimeChart({ data }: Props) {
               backgroundColor: "#faf8f5",
               borderRadius: 8,
             }}
-            formatter={(v: number) => [v, "Envíos"]}
+            formatter={(v) => [v as number, "Envíos"]}
           />
           <Bar dataKey="count" fill="#6b7056" radius={[4, 4, 0, 0]} />
         </BarChart>

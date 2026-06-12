@@ -80,7 +80,7 @@ export default function WeeklyVolumeChart({ data }: Props) {
               backgroundColor: "#faf8f5",
               borderRadius: 8,
             }}
-            formatter={(v: number) => [v, "Transacciones"]}
+            formatter={(v) => [v as number, "Transacciones"]}
           />
           <Bar dataKey="transactions" fill="#9b4a30" radius={[4, 4, 0, 0]} />
         </BarChart>

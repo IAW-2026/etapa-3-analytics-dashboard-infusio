@@ -62,14 +62,14 @@ export default function TopProductsChart({ data }: Props) {
               backgroundColor: "#faf8f5",
               borderRadius: 8,
             }}
-            formatter={(v: number) => [`$${v.toLocaleString("es-AR")}`, "Ingresos"]}
+            formatter={(v) => [`$${(v as number).toLocaleString("es-AR")}`, "Ingresos"]}
           />
           <Bar dataKey="revenue" fill="#6b7056" radius={[0, 4, 4, 0]}>
             <LabelList
               dataKey="revenue"
               position="right"
               style={{ fontSize: 10, fill: AXIS_FILL }}
-              formatter={(v: number) => `$${(v / 1000).toFixed(1)}k`}
+              formatter={(v) => `$${((v as number) / 1000).toFixed(1)}k`}
             />
           </Bar>
         </BarChart>

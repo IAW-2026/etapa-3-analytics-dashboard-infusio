@@ -36,7 +36,7 @@ export default function PaymentMethodsChart({ data }: Props) {
             cx="50%"
             cy="50%"
             outerRadius={80}
-            label={({ percentage }: { percentage: number }) => `${percentage}%`}
+            label={({ percent }) => `${((percent ?? 0) * 100).toFixed(0)}%`}
             labelLine={false}
           >
             {data.map((entry, i) => (
@@ -50,8 +50,8 @@ export default function PaymentMethodsChart({ data }: Props) {
               backgroundColor: "#faf8f5",
               borderRadius: 8,
             }}
-            formatter={(v: number, name: string) => [
-              `${v.toLocaleString("es-AR")} transacciones`,
+            formatter={(v, name) => [
+              `${(v as number).toLocaleString("es-AR")} transacciones`,
               name,
             ]}
           />
