@@ -1,0 +1,91 @@
+// Buyer App mock — kept for offline development reference.
+// The live service (buyerApi.ts) always calls the real API; this file is not imported at runtime.
+
+import type { BuyerAnalyticsResponse } from "@/app/lib/services/buyerApi";
+
+export const buyerMock: BuyerAnalyticsResponse = {
+  meta: { generatedAt: "2026-06-13T00:00:00Z" },
+  overview: {
+    totalRevenue: 142830,
+    totalOrders: 2341,
+    confirmedOrders: 1987,
+    cancelledOrders: 151,
+    activeOrders: 203,
+    totalUsers: 847,
+    newUsersLast30Days: 31,
+    totalProducts: 94,
+    limitedEditionProducts: 6,
+    abandonedCarts: 218,
+    abandonedCartValue: 13104,
+  },
+  orderStatusDistribution: [
+    { status: "CONFIRMED", count: 1987 },
+    { status: "PENDING", count: 203 },
+    { status: "CANCELLED", count: 151 },
+  ],
+  revenueTimeSeries: {
+    daily: [
+      { date: "2026-05-13", revenue: 4120 }, { date: "2026-05-14", revenue: 3840 },
+      { date: "2026-05-15", revenue: 5210 }, { date: "2026-05-16", revenue: 4780 },
+      { date: "2026-05-17", revenue: 3290 }, { date: "2026-05-18", revenue: 2850 },
+      { date: "2026-05-19", revenue: 4560 }, { date: "2026-05-20", revenue: 5340 },
+      { date: "2026-05-21", revenue: 4900 }, { date: "2026-05-22", revenue: 4230 },
+      { date: "2026-05-23", revenue: 3970 }, { date: "2026-05-24", revenue: 3100 },
+      { date: "2026-05-25", revenue: 2750 }, { date: "2026-05-26", revenue: 4680 },
+      { date: "2026-05-27", revenue: 5120 }, { date: "2026-05-28", revenue: 4850 },
+      { date: "2026-05-29", revenue: 4410 }, { date: "2026-05-30", revenue: 3760 },
+      { date: "2026-05-31", revenue: 2980 }, { date: "2026-06-01", revenue: 2640 },
+      { date: "2026-06-02", revenue: 4920 }, { date: "2026-06-03", revenue: 5560 },
+      { date: "2026-06-04", revenue: 5180 }, { date: "2026-06-05", revenue: 4430 },
+      { date: "2026-06-06", revenue: 4070 }, { date: "2026-06-07", revenue: 3250 },
+      { date: "2026-06-08", revenue: 2820 }, { date: "2026-06-09", revenue: 5010 },
+      { date: "2026-06-10", revenue: 5440 }, { date: "2026-06-11", revenue: 4980 },
+    ],
+    weekly: [
+      { weekStart: "2026-03-16", revenue: 28400 }, { weekStart: "2026-03-23", revenue: 31200 },
+      { weekStart: "2026-03-30", revenue: 27600 }, { weekStart: "2026-04-06", revenue: 29800 },
+      { weekStart: "2026-04-13", revenue: 33100 }, { weekStart: "2026-04-20", revenue: 30500 },
+      { weekStart: "2026-04-27", revenue: 28900 }, { weekStart: "2026-05-04", revenue: 31700 },
+      { weekStart: "2026-05-11", revenue: 34200 }, { weekStart: "2026-05-18", revenue: 32800 },
+      { weekStart: "2026-05-25", revenue: 29300 }, { weekStart: "2026-06-01", revenue: 35600 },
+      { weekStart: "2026-06-08", revenue: 12830 },
+    ],
+    monthly: [
+      { month: "2025-07", revenue: 8200 }, { month: "2025-08", revenue: 9100 },
+      { month: "2025-09", revenue: 10400 }, { month: "2025-10", revenue: 11800 },
+      { month: "2025-11", revenue: 13200 }, { month: "2025-12", revenue: 9600 },
+      { month: "2026-01", revenue: 12100 }, { month: "2026-02", revenue: 13800 },
+      { month: "2026-03", revenue: 14900 }, { month: "2026-04", revenue: 15600 },
+      { month: "2026-05", revenue: 16200 }, { month: "2026-06", revenue: 7930 },
+    ],
+  },
+  topProducts: [
+    { productName: "Café Etiopía Yirgacheffe", totalRevenue: 18432, totalQuantity: 576 },
+    { productName: "Té Matcha Premium", totalRevenue: 12129, totalQuantity: 311 },
+    { productName: "Café Colombia Huila", totalRevenue: 10830, totalQuantity: 380 },
+    { productName: "Hervidor Eléctrico Pro", totalRevenue: 9656, totalQuantity: 68 },
+    { productName: "Yerba Mate Premium", totalRevenue: 8892, totalQuantity: 494 },
+    { productName: "Cafetera Italiana 6 tazas", totalRevenue: 7584, totalQuantity: 79 },
+    { productName: "Café Guatemala Antigua", totalRevenue: 6844, totalQuantity: 236 },
+    { productName: "Té Verde Sencha", totalRevenue: 5355, totalQuantity: 210 },
+    { productName: "Prensa Francesa Premium", totalRevenue: 4715, totalQuantity: 41 },
+    { productName: "Taza cerámica artesanal", totalRevenue: 4485, totalQuantity: 230 },
+  ],
+  favourites: {
+    totalFavouriteEntries: 1243,
+    totalSharedLists: 87,
+    topFavouritedProducts: [
+      { productName: "Café Etiopía Yirgacheffe", count: 148 },
+      { productName: "Té Matcha Premium", count: 132 },
+      { productName: "Hervidor Eléctrico Pro", count: 98 },
+      { productName: "Yerba Mate Premium", count: 87 },
+      { productName: "Cafetera Italiana 6 tazas", count: 76 },
+    ],
+    topCategories: [
+      { category: "café", count: 512 },
+      { category: "infusiones", count: 389 },
+      { category: "máquinas", count: 214 },
+      { category: "accesorios", count: 128 },
+    ],
+  },
+};
