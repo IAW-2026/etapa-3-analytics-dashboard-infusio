@@ -27,9 +27,22 @@ interface WeeklyVolumePoint {
 
 interface Props {
   data: WeeklyVolumePoint[];
+  title?: string;
+  subtitle?: string;
+  valueLabel?: string;
+  format?: "currency" | "number";
 }
 
-export default function WeeklyVolumeChart({ data }: Props) {
+export default function WeeklyVolumeChart({
+  data,
+  title = "Volumen de transacciones",
+  subtitle = "Por semana",
+  valueLabel = "Transacciones",
+  format = "number",
+}: Props) {
+  const valueFormatter = format === "currency"
+    ? (v: number) => `$${v.toLocaleString("es-AR")}`
+    : (v: number) => v.toLocaleString("es-AR");
   const [range, setRange] = useState(1);
   const filtered = data.slice(-RANGES[range].weeks);
 
@@ -37,9 +50,9 @@ export default function WeeklyVolumeChart({ data }: Props) {
     <div className="bg-white rounded-2xl border border-tan p-6 shadow-sm">
       <div className="flex items-start justify-between mb-5">
         <div>
-          <h3 className="text-sm font-medium text-brown">Volumen de transacciones</h3>
+          <h3 className="text-sm font-medium text-brown">{title}</h3>
           <p className="text-xs tracking-[0.15em] text-muted-foreground uppercase mt-0.5">
-            Por semana
+            {subtitle}
           </p>
         </div>
         <div className="flex gap-1">
@@ -80,7 +93,10 @@ export default function WeeklyVolumeChart({ data }: Props) {
               backgroundColor: "#faf8f5",
               borderRadius: 8,
             }}
-            formatter={(v) => [v as number, "Transacciones"]}
+            formatter={(v) => [
+              valueFormatter ? valueFormatter(v as number) : (v as number),
+              valueLabel,
+            ]}
           />
           <Bar dataKey="transactions" fill="#9b4a30" radius={[4, 4, 0, 0]} />
         </BarChart>

@@ -1,29 +1,21 @@
 import KpiCard from "@/app/ui/KpiCard";
 import AppBadge from "@/app/ui/AppBadge";
-import { DynamicUserGrowthChart, DynamicWeeklyVolumeChart } from "@/app/ui/DynamicCharts";
-import { getBuyerStats, getRecentOrders, getUserGrowth, getWeeklyVolume } from "@/app/lib/services/buyerApi";
+import { DynamicRevenueAreaChart, DynamicOrderStatusPieChart } from "@/app/ui/DynamicCharts";
+import { getBuyerAnalytics, getOrderStatusData, getMonthlyRevenue } from "@/app/lib/services/buyerApi";
 
 export default async function UsersPage() {
-  const [stats, recentOrders, userGrowth, weeklyVolume] = await Promise.all([
-    getBuyerStats(),
-    getRecentOrders(20),
-    getUserGrowth(),
-    getWeeklyVolume(),
+  const [analytics, orderStatusData, monthlyRevenue] = await Promise.all([
+    getBuyerAnalytics(),
+    getOrderStatusData(),
+    getMonthlyRevenue(),
   ]);
 
-  const avgOrdersPerUser = (stats.totalOrders / stats.totalUsers).toFixed(1);
+  const { overview, favourites } = analytics;
 
-  const recentUsers = recentOrders
-    .reduce<{ userId: string; name: string; ordersCount: number; lastOrder: string }[]>((acc, order) => {
-      const existing = acc.find((u) => u.userId === order.userId);
-      if (existing) {
-        existing.ordersCount += 1;
-      } else {
-        acc.push({ userId: order.userId, name: order.userName, ordersCount: 1, lastOrder: order.createdAt });
-      }
-      return acc;
-    }, [])
-    .slice(0, 15);
+  const avgOrdersPerUser =
+    overview.totalUsers > 0
+      ? (overview.totalOrders / overview.totalUsers).toFixed(1)
+      : "0.0";
 
   return (
     <div className="space-y-8 max-w-screen-2xl">
@@ -36,26 +28,50 @@ export default async function UsersPage() {
           <AppBadge source="buyer" />
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <KpiCard label="Total de usuarios" value={stats.totalUsers.toLocaleString("es-AR")} appSource="buyer" />
           <KpiCard
-            label="Activos (30 días)"
-            value={stats.activeUsers.toLocaleString("es-AR")}
-            delta={5.2}
-            deltaPositive
+            label="Total de usuarios"
+            value={overview.totalUsers.toLocaleString("es-AR")}
             appSource="buyer"
           />
           <KpiCard
-            label="Nuevos (última semana)"
-            value={userGrowth[userGrowth.length - 1]?.newUsers ?? 0}
-            delta={-33.3}
-            deltaPositive={false}
+            label="Nuevos (últimos 30 días)"
+            value={overview.newUsersLast30Days.toLocaleString("es-AR")}
             appSource="buyer"
           />
+          <KpiCard
+            label="Carritos abandonados"
+            value={overview.abandonedCarts.toLocaleString("es-AR")}
+            appSource="buyer"
+          />
+          <KpiCard
+            label="Valor abandonado"
+            value={`$${overview.abandonedCartValue.toLocaleString("es-AR")}`}
+            appSource="buyer"
+          />
+        </div>
+      </section>
+
+      {/* Secondary KPIs */}
+      <section>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           <KpiCard
             label="Pedidos por usuario"
             value={avgOrdersPerUser}
-            delta={8.1}
-            deltaPositive
+            appSource="buyer"
+          />
+          <KpiCard
+            label="Favoritos totales"
+            value={favourites.totalFavouriteEntries.toLocaleString("es-AR")}
+            appSource="buyer"
+          />
+          <KpiCard
+            label="Listas compartidas"
+            value={favourites.totalSharedLists.toLocaleString("es-AR")}
+            appSource="buyer"
+          />
+          <KpiCard
+            label="Ingresos totales"
+            value={`$${overview.totalRevenue.toLocaleString("es-AR")}`}
             appSource="buyer"
           />
         </div>
@@ -67,46 +83,77 @@ export default async function UsersPage() {
           Análisis
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <DynamicUserGrowthChart data={userGrowth} />
-          <DynamicWeeklyVolumeChart data={weeklyVolume} />
+          <DynamicRevenueAreaChart
+            data={monthlyRevenue}
+            title="Ingresos mensuales"
+            subtitle="Últimos 12 meses"
+          />
+          <DynamicOrderStatusPieChart
+            data={orderStatusData}
+            title="Estado de pedidos"
+            subtitle="Comportamiento de compra"
+          />
         </div>
       </section>
 
-      {/* User activity table derived from orders */}
+      {/* Favourites tables */}
       <section>
         <div className="flex items-center gap-3 mb-4">
           <h2 className="text-xs tracking-[0.2em] text-muted-foreground uppercase font-medium">
-            Actividad reciente de usuarios
+            Comportamiento de favoritos
           </h2>
           <AppBadge source="buyer" />
         </div>
-        <div className="bg-white rounded-2xl border border-tan shadow-sm overflow-hidden">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-tan">
-                <th className="text-left text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">ID Usuario</th>
-                <th className="text-left text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">Nombre</th>
-                <th className="text-center text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">Pedidos recientes</th>
-                <th className="text-right text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">Último pedido</th>
-              </tr>
-            </thead>
-            <tbody>
-              {recentUsers.map((user) => (
-                <tr key={user.userId} className="border-b border-tan/50 last:border-0 hover:bg-muted/30 transition-colors">
-                  <td className="px-6 py-4 font-mono text-xs text-muted-foreground">{user.userId}</td>
-                  <td className="px-6 py-4 text-brown font-medium">{user.name}</td>
-                  <td className="px-6 py-4 text-center">
-                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-olive/10 text-olive text-xs font-medium">
-                      {user.ordersCount}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-right text-muted-foreground text-xs">
-                    {new Date(user.lastOrder).toLocaleDateString("es-AR", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })}
-                  </td>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Top favourited products */}
+          <div className="bg-white rounded-2xl border border-tan shadow-sm overflow-hidden">
+            <div className="px-6 py-4 border-b border-tan">
+              <h3 className="text-sm font-medium text-brown">Productos más favoriteados</h3>
+            </div>
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-tan">
+                  <th className="text-left text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">Producto</th>
+                  <th className="text-right text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">Veces favoriteado</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {favourites.topFavouritedProducts.map((p, i) => (
+                  <tr key={i} className="border-b border-tan/50 last:border-0 hover:bg-muted/30 transition-colors">
+                    <td className="px-6 py-3 text-brown font-medium">{p.productName ?? p.name}</td>
+                    <td className="px-6 py-3 text-right">
+                      <span className="inline-flex items-center gap-1 text-terracotta font-medium">
+                        ♥ {p.count ?? p.total}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Top categories */}
+          <div className="bg-white rounded-2xl border border-tan shadow-sm overflow-hidden">
+            <div className="px-6 py-4 border-b border-tan">
+              <h3 className="text-sm font-medium text-brown">Categorías más favoriteadas</h3>
+            </div>
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-tan">
+                  <th className="text-left text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">Categoría</th>
+                  <th className="text-right text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">Entradas</th>
+                </tr>
+              </thead>
+              <tbody>
+                {favourites.topCategories.map((c, i) => (
+                  <tr key={i} className="border-b border-tan/50 last:border-0 hover:bg-muted/30 transition-colors">
+                    <td className="px-6 py-3 text-brown font-medium capitalize">{c.category ?? c.name}</td>
+                    <td className="px-6 py-3 text-right text-muted-foreground">{c.count ?? c.total}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
     </div>

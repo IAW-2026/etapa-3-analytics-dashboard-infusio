@@ -1,6 +1,8 @@
 import Sidebar from "@/app/ui/Sidebar";
 import Header from "@/app/ui/Header";
 
+export const dynamic = "force-dynamic";
+
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen bg-cream">

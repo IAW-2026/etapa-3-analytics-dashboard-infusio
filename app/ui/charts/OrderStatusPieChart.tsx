@@ -34,19 +34,19 @@ export default function OrderStatusPieChart({
       <p className="text-xs tracking-[0.15em] text-muted-foreground uppercase mt-0.5 mb-5">
         {subtitle}
       </p>
-      <ResponsiveContainer width="100%" height={220}>
-        <PieChart>
+      <ResponsiveContainer width="100%" height={260}>
+        <PieChart margin={{ top: 20, right: 30, bottom: 0, left: 30 }}>
           <Pie
             data={data}
             dataKey="count"
             nameKey="status"
             cx="50%"
-            cy="50%"
-            outerRadius={80}
+            cy="48%"
+            outerRadius={85}
             label={({ percent }) =>
               `${((percent ?? 0) * 100).toFixed(0)}%`
             }
-            labelLine={false}
+            labelLine={true}
           >
             {data.map((entry, i) => (
               <Cell key={i} fill={entry.color} />
