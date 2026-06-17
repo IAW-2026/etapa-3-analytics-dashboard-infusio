@@ -75,3 +75,16 @@
     text-wrap: balance;
   }
 }
+
+/* Clerk UserButton Styling Overrides */
+.cl-userButtonOuterIdentifier {
+  color: #f5f3ef !important;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.825rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.cl-userButtonOuterIdentifier:hover {
+  color: #ffffff !important;
+}
+

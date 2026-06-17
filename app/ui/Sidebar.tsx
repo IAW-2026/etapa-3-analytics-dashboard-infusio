@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { UserButton } from "@clerk/nextjs";
 
 const NAV_ITEMS = [
   {
@@ -110,6 +111,17 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           );
         })}
       </nav>
+
+      <div className="px-6 py-4 border-t border-white/10 flex items-center justify-start">
+        <UserButton
+          showName
+          appearance={{
+            elements: {
+              userButtonOuterIdentifier: "text-cream hover:text-white transition-colors font-medium text-xs",
+            },
+          }}
+        />
+      </div>
 
       <div className="px-6 py-6 border-t border-white/10">
         <p className="text-xs text-white/30 tracking-[0.15em] uppercase">Ecosistema Infusio</p>
