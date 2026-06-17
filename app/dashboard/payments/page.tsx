@@ -1,29 +1,33 @@
 import KpiCard from "@/app/ui/KpiCard";
 import AppBadge from "@/app/ui/AppBadge";
-import { DynamicPaymentMethodsChart, DynamicDisputesTrendChart } from "@/app/ui/DynamicCharts";
-import { getPaymentStats, getRecentDisputes, getDisputesTrend, getPaymentMethods } from "@/app/lib/services/paymentsApi";
-
-const DISPUTE_STYLES: Record<string, string> = {
-  open: "bg-yellow-50 text-yellow-700",
-  resolved: "bg-olive/10 text-olive",
-  rejected: "bg-red-50 text-red-700",
-};
-
-const DISPUTE_LABELS: Record<string, string> = {
-  open: "Abierta",
-  resolved: "Resuelta",
-  rejected: "Rechazada",
-};
-
+import {
+  DynamicRevenueAreaChart,
+  DynamicOrderStatusPieChart,
+} from "@/app/ui/DynamicCharts";
+import {
+  getPaymentStats,
+  getRecentDisputes,
+  getPaymentsAnalyticsData,
+} from "@/app/lib/services/paymentsApi";
 import PaymentsTable from "@/app/ui/tables/PaymentsTable";
 
 export default async function PaymentsPage() {
-  const [stats, recentDisputes, disputesTrend, paymentMethods] = await Promise.all([
+  const [stats, recentDisputes, analyticsData] = await Promise.all([
     getPaymentStats(),
     getRecentDisputes(8),
-    getDisputesTrend(),
-    getPaymentMethods(),
+    getPaymentsAnalyticsData(),
   ]);
+
+  const monthlyRevenue = analyticsData.monthly.map((m) => ({
+    date: m.label,
+    revenue: m.revenue,
+  }));
+
+  const statusDistribution = [
+    { status: "Aceptados", count: stats.successfulPayments, color: "#6b7056" },
+    { status: "Pendientes", count: stats.disputed, color: "#b07d62" },
+    { status: "Cancelados", count: stats.failedPayments, color: "#9b4a30" },
+  ];
 
   return (
     <div className="space-y-8 max-w-screen-2xl">
@@ -62,8 +66,16 @@ export default async function PaymentsPage() {
           Análisis
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <DynamicPaymentMethodsChart data={paymentMethods} />
-          <DynamicDisputesTrendChart data={disputesTrend} />
+          <DynamicRevenueAreaChart
+            data={monthlyRevenue}
+            title="Historial de ingresos"
+            subtitle="Últimos 6 meses"
+          />
+          <DynamicOrderStatusPieChart
+            data={statusDistribution}
+            title="Distribución de transacciones"
+            subtitle="Por estado de pago"
+          />
         </div>
       </section>
 
