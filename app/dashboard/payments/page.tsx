@@ -45,7 +45,7 @@ export default async function PaymentsPage() {
           />
           <KpiCard label="Pagos exitosos" value={stats.successfulPayments.toLocaleString("es-AR")} delta={3.2} deltaPositive appSource="payments" />
           <KpiCard label="Pagos fallidos" value={stats.failedPayments.toLocaleString("es-AR")} delta={-12.0} deltaPositive={false} appSource="payments" />
-          <KpiCard label="Disputas" value={stats.disputed.toLocaleString("es-AR")} delta={-8.7} deltaPositive={false} appSource="payments" />
+          <KpiCard label="Pagos pendientes" value={stats.disputed.toLocaleString("es-AR")} delta={-8.7} deltaPositive={false} appSource="payments" />
           <KpiCard
             label="Transacción promedio"
             value={`$${stats.avgTransactionValue.toFixed(2)}`}
@@ -67,11 +67,11 @@ export default async function PaymentsPage() {
         </div>
       </section>
 
-      {/* Disputes Table */}
+      {/* Recent Payments Table */}
       <section>
         <div className="flex items-center gap-3 mb-4">
           <h2 className="text-xs tracking-[0.2em] text-muted-foreground uppercase font-medium">
-            Disputas recientes
+            Pagos recientes
           </h2>
           <AppBadge source="payments" />
         </div>
