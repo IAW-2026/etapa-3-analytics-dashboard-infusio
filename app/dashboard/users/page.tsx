@@ -3,6 +3,8 @@ import AppBadge from "@/app/ui/AppBadge";
 import { DynamicRevenueAreaChart, DynamicOrderStatusPieChart } from "@/app/ui/DynamicCharts";
 import { getBuyerAnalytics, getOrderStatusData, getMonthlyRevenue } from "@/app/lib/services/buyerApi";
 
+import { TopFavouritedProductsTable, TopCategoriesTable } from "@/app/ui/tables/UsersTable";
+
 export default async function UsersPage() {
   const [analytics, orderStatusData, monthlyRevenue] = await Promise.all([
     getBuyerAnalytics(),
@@ -110,26 +112,7 @@ export default async function UsersPage() {
             <div className="px-6 py-4 border-b border-tan">
               <h3 className="text-sm font-medium text-brown">Productos más favoriteados</h3>
             </div>
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-tan">
-                  <th className="text-left text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">Producto</th>
-                  <th className="text-right text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">Veces favoriteado</th>
-                </tr>
-              </thead>
-              <tbody>
-                {favourites.topFavouritedProducts.map((p, i) => (
-                  <tr key={i} className="border-b border-tan/50 last:border-0 hover:bg-muted/30 transition-colors">
-                    <td className="px-6 py-3 text-brown font-medium">{p.productName ?? p.name}</td>
-                    <td className="px-6 py-3 text-right">
-                      <span className="inline-flex items-center gap-1 text-terracotta font-medium">
-                        ♥ {p.count ?? p.total}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <TopFavouritedProductsTable data={favourites.topFavouritedProducts} />
           </div>
 
           {/* Top categories */}
@@ -137,22 +120,7 @@ export default async function UsersPage() {
             <div className="px-6 py-4 border-b border-tan">
               <h3 className="text-sm font-medium text-brown">Categorías más favoriteadas</h3>
             </div>
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-tan">
-                  <th className="text-left text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">Categoría</th>
-                  <th className="text-right text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">Entradas</th>
-                </tr>
-              </thead>
-              <tbody>
-                {favourites.topCategories.map((c, i) => (
-                  <tr key={i} className="border-b border-tan/50 last:border-0 hover:bg-muted/30 transition-colors">
-                    <td className="px-6 py-3 text-brown font-medium capitalize">{c.category ?? c.name}</td>
-                    <td className="px-6 py-3 text-right text-muted-foreground">{c.count ?? c.total}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <TopCategoriesTable data={favourites.topCategories} />
           </div>
         </div>
       </section>

@@ -15,6 +15,8 @@ const DISPUTE_LABELS: Record<string, string> = {
   rejected: "Rechazada",
 };
 
+import PaymentsTable from "@/app/ui/tables/PaymentsTable";
+
 export default async function PaymentsPage() {
   const [stats, recentDisputes, disputesTrend, paymentMethods] = await Promise.all([
     getPaymentStats(),
@@ -73,40 +75,7 @@ export default async function PaymentsPage() {
           </h2>
           <AppBadge source="payments" />
         </div>
-        <div className="bg-white rounded-2xl border border-tan shadow-sm overflow-hidden">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-tan">
-                <th className="text-left text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">ID</th>
-                <th className="text-left text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">Cliente</th>
-                <th className="text-left text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium hidden md:table-cell">Motivo</th>
-                <th className="text-left text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">Estado</th>
-                <th className="text-right text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">Monto</th>
-                <th className="text-right text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium hidden lg:table-cell">Apertura</th>
-              </tr>
-            </thead>
-            <tbody>
-              {recentDisputes.map((dispute) => (
-                <tr key={dispute.id} className="border-b border-tan/50 last:border-0 hover:bg-muted/30 transition-colors">
-                  <td className="px-6 py-4 font-mono text-xs text-muted-foreground">{dispute.id}</td>
-                  <td className="px-6 py-4 text-brown font-medium">{dispute.userName}</td>
-                  <td className="px-6 py-4 text-muted-foreground hidden md:table-cell">{dispute.reason}</td>
-                  <td className="px-6 py-4">
-                    <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${DISPUTE_STYLES[dispute.status] ?? "bg-tan text-brown"}`}>
-                      {DISPUTE_LABELS[dispute.status] ?? dispute.status}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-right font-medium text-brown">
-                    ${dispute.amount.toLocaleString("es-AR", { minimumFractionDigits: 2 })}
-                  </td>
-                  <td className="px-6 py-4 text-right text-muted-foreground text-xs hidden lg:table-cell">
-                    {new Date(dispute.openedAt).toLocaleDateString("es-AR")}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <PaymentsTable data={recentDisputes} />
       </section>
     </div>
   );

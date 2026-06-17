@@ -60,14 +60,34 @@ const NAV_ITEMS = [
   },
 ];
 
-export default function Sidebar() {
+interface SidebarProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+}
+
+export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed top-0 left-0 h-screen w-64 bg-brown flex flex-col z-20">
-      <div className="px-6 py-8 border-b border-white/10">
-        <p className="font-serif text-2xl text-cream tracking-wide">Infusio</p>
-        <p className="text-xs tracking-[0.2em] text-white/40 uppercase mt-1">Analytics</p>
+    <aside
+      className={`fixed top-0 left-0 h-screen w-64 bg-brown flex flex-col z-40 transition-transform duration-300 ${
+        isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+      }`}
+    >
+      <div className="px-6 py-8 border-b border-white/10 flex items-center justify-between">
+        <div>
+          <p className="font-serif text-2xl text-cream tracking-wide">Infusio</p>
+          <p className="text-xs tracking-[0.2em] text-white/40 uppercase mt-1">Analytics</p>
+        </div>
+        <button
+          onClick={onClose}
+          className="p-1 rounded-lg text-white/50 hover:text-cream lg:hidden transition-colors"
+          aria-label="Cerrar menú"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
 
       <nav className="flex-1 px-3 py-6 flex flex-col gap-1">
@@ -77,6 +97,7 @@ export default function Sidebar() {
             <Link
               key={item.href}
               href={item.href}
+              onClick={onClose}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
                 isActive
                   ? "bg-white/15 text-cream"

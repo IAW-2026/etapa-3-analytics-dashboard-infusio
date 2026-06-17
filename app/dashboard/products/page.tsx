@@ -15,6 +15,8 @@ function stockStatus(stock: number) {
   return { label: `En stock (${stock})`, style: STOCK_STYLES.ok };
 }
 
+import ProductsTable from "@/app/ui/tables/ProductsTable";
+
 export default async function ProductsPage() {
   const [stats, topProducts, productList, categoryData] = await Promise.all([
     getSellerStats(),
@@ -67,41 +69,7 @@ export default async function ProductsPage() {
           </h2>
           <AppBadge source="seller" />
         </div>
-        <div className="bg-white rounded-2xl border border-tan shadow-sm overflow-hidden">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-tan">
-                <th className="text-left text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">Producto</th>
-                <th className="text-left text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium hidden md:table-cell">Categoría</th>
-                <th className="text-right text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">Precio</th>
-                <th className="text-left text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium hidden lg:table-cell">Stock</th>
-                <th className="text-right text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium hidden lg:table-cell">Rating</th>
-                <th className="text-right text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">Ingresos</th>
-              </tr>
-            </thead>
-            <tbody>
-              {productList.map((product) => {
-                const { label, style } = stockStatus(product.stock);
-                return (
-                  <tr key={product.id} className="border-b border-tan/50 last:border-0 hover:bg-muted/30 transition-colors">
-                    <td className="px-6 py-4 text-brown font-medium">{product.name}</td>
-                    <td className="px-6 py-4 text-muted-foreground capitalize hidden md:table-cell">{product.category}</td>
-                    <td className="px-6 py-4 text-right text-brown">${product.price.toFixed(2)}</td>
-                    <td className="px-6 py-4 hidden lg:table-cell">
-                      <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${style}`}>{label}</span>
-                    </td>
-                    <td className="px-6 py-4 text-right text-muted-foreground hidden lg:table-cell">
-                      {"★".repeat(Math.round(product.rating))} {product.rating.toFixed(1)}
-                    </td>
-                    <td className="px-6 py-4 text-right font-medium text-brown">
-                      ${product.revenue.toLocaleString("es-AR")}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+        <ProductsTable data={productList} />
       </section>
     </div>
   );

@@ -3,6 +3,8 @@ import AppBadge from "@/app/ui/AppBadge";
 import { DynamicOrderStatusPieChart, DynamicWeeklyVolumeChart } from "@/app/ui/DynamicCharts";
 import { getBuyerAnalytics, getOrderStatusData, getWeeklyRevenue } from "@/app/lib/services/buyerApi";
 
+import OrdersTable from "@/app/ui/tables/OrdersTable";
+
 export default async function OrdersPage() {
   const [analytics, orderStatusData, weeklyRevenue] = await Promise.all([
     getBuyerAnalytics(),
@@ -87,37 +89,7 @@ export default async function OrdersPage() {
           </h2>
           <AppBadge source="buyer" />
         </div>
-        <div className="bg-white rounded-2xl border border-tan shadow-sm overflow-hidden">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-tan">
-                <th className="text-left text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">#</th>
-                <th className="text-left text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">Producto</th>
-                <th className="text-right text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">Unidades vendidas</th>
-                <th className="text-right text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">Ingresos generados</th>
-                <th className="text-right text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium hidden md:table-cell">Precio unitario prom.</th>
-              </tr>
-            </thead>
-            <tbody>
-              {topProducts.map((p, i) => {
-                const unitPrice = p.totalQuantity > 0 ? p.totalRevenue / p.totalQuantity : 0;
-                return (
-                  <tr key={i} className="border-b border-tan/50 last:border-0 hover:bg-muted/30 transition-colors">
-                    <td className="px-6 py-4 text-xs text-muted-foreground font-mono">#{i + 1}</td>
-                    <td className="px-6 py-4 text-brown font-medium">{p.productName}</td>
-                    <td className="px-6 py-4 text-right text-brown">{p.totalQuantity.toLocaleString("es-AR")}</td>
-                    <td className="px-6 py-4 text-right font-medium text-brown">
-                      ${p.totalRevenue.toLocaleString("es-AR")}
-                    </td>
-                    <td className="px-6 py-4 text-right text-muted-foreground hidden md:table-cell">
-                      ${unitPrice.toLocaleString("es-AR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+        <OrdersTable data={topProducts} />
       </section>
     </div>
   );

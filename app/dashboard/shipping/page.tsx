@@ -17,6 +17,8 @@ const SHIPMENT_LABELS: Record<string, string> = {
   failed: "Fallido",
 };
 
+import ShippingTable from "@/app/ui/tables/ShippingTable";
+
 export default async function ShippingPage() {
   const [stats, recentShipments, statusData, deliveryTimeData] = await Promise.all([
     getShippingStats(),
@@ -69,38 +71,7 @@ export default async function ShippingPage() {
           </h2>
           <AppBadge source="shipping" />
         </div>
-        <div className="bg-white rounded-2xl border border-tan shadow-sm overflow-hidden">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-tan">
-                <th className="text-left text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">ID Envío</th>
-                <th className="text-left text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium hidden md:table-cell">Pedido</th>
-                <th className="text-left text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">Destino</th>
-                <th className="text-left text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium hidden lg:table-cell">Transportista</th>
-                <th className="text-left text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium">Estado</th>
-                <th className="text-right text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium hidden md:table-cell">Fecha envío</th>
-              </tr>
-            </thead>
-            <tbody>
-              {recentShipments.map((shipment) => (
-                <tr key={shipment.id} className="border-b border-tan/50 last:border-0 hover:bg-muted/30 transition-colors">
-                  <td className="px-6 py-4 font-mono text-xs text-muted-foreground">{shipment.id}</td>
-                  <td className="px-6 py-4 font-mono text-xs text-muted-foreground hidden md:table-cell">{shipment.orderId}</td>
-                  <td className="px-6 py-4 text-brown font-medium">{shipment.destinationCity}</td>
-                  <td className="px-6 py-4 text-muted-foreground hidden lg:table-cell">{shipment.carrier}</td>
-                  <td className="px-6 py-4">
-                    <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${SHIPMENT_STYLES[shipment.status] ?? "bg-tan text-brown"}`}>
-                      {SHIPMENT_LABELS[shipment.status] ?? shipment.status}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-right text-muted-foreground text-xs hidden md:table-cell">
-                    {new Date(shipment.createdAt).toLocaleDateString("es-AR")}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <ShippingTable data={recentShipments} />
       </section>
     </div>
   );
