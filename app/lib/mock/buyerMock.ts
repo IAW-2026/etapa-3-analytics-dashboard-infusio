@@ -75,11 +75,11 @@ export const buyerMock: BuyerAnalyticsResponse = {
     totalFavouriteEntries: 1243,
     totalSharedLists: 87,
     topFavouritedProducts: [
-      { productName: "Café Etiopía Yirgacheffe", count: 148 },
-      { productName: "Té Matcha Premium", count: 132 },
-      { productName: "Hervidor Eléctrico Pro", count: 98 },
-      { productName: "Yerba Mate Premium", count: 87 },
-      { productName: "Cafetera Italiana 6 tazas", count: 76 },
+      { productName: "Café Etiopía Yirgacheffe", userCount: 148 },
+      { productName: "Té Matcha Premium", userCount: 132 },
+      { productName: "Hervidor Eléctrico Pro", userCount: 98 },
+      { productName: "Yerba Mate Premium", userCount: 87 },
+      { productName: "Cafetera Italiana 6 tazas", userCount: 76 },
     ],
     topCategories: [
       { category: "café", count: 512 },

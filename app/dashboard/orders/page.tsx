@@ -24,7 +24,7 @@ export default async function OrdersPage() {
       {/* KPIs */}
       <section>
         <div className="flex items-center gap-3 mb-4">
-          <h2 className="text-xs tracking-[0.2em] text-muted-foreground uppercase font-medium">
+          <h2 className="text-sm tracking-[0.15em] text-muted-foreground uppercase font-semibold">
             Indicadores de pedidos
           </h2>
           <AppBadge source="buyer" />
@@ -62,7 +62,7 @@ export default async function OrdersPage() {
 
       {/* Charts */}
       <section>
-        <h2 className="text-xs tracking-[0.2em] text-muted-foreground uppercase font-medium mb-4">
+        <h2 className="text-sm tracking-[0.15em] text-muted-foreground uppercase font-semibold mb-4">
           Análisis
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -84,7 +84,7 @@ export default async function OrdersPage() {
       {/* Top products by orders */}
       <section>
         <div className="flex items-center gap-3 mb-4">
-          <h2 className="text-xs tracking-[0.2em] text-muted-foreground uppercase font-medium">
+          <h2 className="text-sm tracking-[0.15em] text-muted-foreground uppercase font-semibold">
             Productos más vendidos
           </h2>
           <AppBadge source="buyer" />

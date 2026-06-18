@@ -38,28 +38,28 @@ export default function ShippingTable({ data, pageSize = 8 }: ShippingTableProps
       render: (item: Shipment) => (
         <span className="font-mono text-xs text-muted-foreground">{item.id}</span>
       ),
-      className: "text-left w-24",
+      className: "text-center w-36 whitespace-nowrap",
     },
     {
       header: "Pedido",
       render: (item: Shipment) => (
         <span className="font-mono text-xs text-muted-foreground">{item.orderId}</span>
       ),
-      className: "text-left hidden md:table-cell w-24",
+      className: "text-center hidden md:table-cell w-28",
     },
     {
       header: "Destino",
       render: (item: Shipment) => (
         <span className="text-brown font-medium">{item.destinationCity}</span>
       ),
-      className: "text-left",
+      className: "text-center",
     },
     {
       header: "Transportista",
       render: (item: Shipment) => (
         <span className="text-muted-foreground">{item.carrier}</span>
       ),
-      className: "text-left hidden lg:table-cell",
+      className: "text-center hidden lg:table-cell",
     },
     {
       header: "Estado",
@@ -72,7 +72,7 @@ export default function ShippingTable({ data, pageSize = 8 }: ShippingTableProps
           {SHIPMENT_LABELS[item.status] ?? item.status}
         </span>
       ),
-      className: "text-left",
+      className: "text-center",
     },
     {
       header: "Fecha envío",
@@ -81,7 +81,7 @@ export default function ShippingTable({ data, pageSize = 8 }: ShippingTableProps
           {new Date(item.createdAt).toLocaleDateString("es-AR")}
         </span>
       ),
-      className: "text-right hidden md:table-cell",
+      className: "text-center hidden md:table-cell",
     },
   ];
 

@@ -44,14 +44,14 @@ export default function ProductsTable({ data, pageSize = 8 }: ProductsTableProps
       render: (item: Product) => (
         <span className="text-muted-foreground capitalize">{item.category}</span>
       ),
-      className: "text-left hidden md:table-cell",
+      className: "text-center hidden md:table-cell",
     },
     {
       header: "Precio",
       render: (item: Product) => (
         <span>${item.price.toFixed(2)}</span>
       ),
-      className: "text-right",
+      className: "text-center",
     },
     {
       header: "Stock",
@@ -63,7 +63,7 @@ export default function ProductsTable({ data, pageSize = 8 }: ProductsTableProps
           </span>
         );
       },
-      className: "text-left hidden lg:table-cell",
+      className: "text-center hidden lg:table-cell",
     },
     {
       header: "Rating",
@@ -72,7 +72,7 @@ export default function ProductsTable({ data, pageSize = 8 }: ProductsTableProps
           {"★".repeat(Math.round(item.rating))} {item.rating.toFixed(1)}
         </span>
       ),
-      className: "text-right hidden lg:table-cell",
+      className: "text-center hidden lg:table-cell",
     },
     {
       header: "Ingresos",
@@ -81,7 +81,7 @@ export default function ProductsTable({ data, pageSize = 8 }: ProductsTableProps
           ${item.revenue.toLocaleString("es-AR")}
         </span>
       ),
-      className: "text-right",
+      className: "text-center",
     },
   ];
 

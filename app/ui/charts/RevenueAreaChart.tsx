@@ -35,8 +35,8 @@ export default function RevenueAreaChart({
       <p className="text-xs tracking-[0.15em] text-muted-foreground uppercase mt-0.5 mb-5">
         {subtitle}
       </p>
-      <ResponsiveContainer width="100%" height={220}>
-        <AreaChart data={data} margin={{ top: 4, right: 4, bottom: 0, left: 0 }}>
+      <ResponsiveContainer width="100%" height={250}>
+        <AreaChart data={data} margin={{ top: 4, right: 4, bottom: 48, left: 0 }}>
           <defs>
             <linearGradient id="gradRevenue" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#6b7056" stopOpacity={0.25} />
@@ -50,6 +50,7 @@ export default function RevenueAreaChart({
             tickLine={false}
             axisLine={false}
             interval={4}
+            tickMargin={24}
           />
           <YAxis
             tick={{ fill: AXIS_FILL, fontSize: 11 }}

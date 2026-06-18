@@ -31,11 +31,11 @@ export default function OrdersTable({ data, pageSize = 8 }: OrdersTableProps) {
       className: "text-left",
     },
     {
-      header: "Unidades vendidas",
+      header: "Unidades",
       render: (item: TopProduct) => (
         <span>{item.totalQuantity.toLocaleString("es-AR")}</span>
       ),
-      className: "text-right",
+      className: "text-center",
     },
     {
       header: "Ingresos generados",
@@ -44,7 +44,7 @@ export default function OrdersTable({ data, pageSize = 8 }: OrdersTableProps) {
           ${item.totalRevenue.toLocaleString("es-AR")}
         </span>
       ),
-      className: "text-right",
+      className: "text-center",
     },
     {
       header: "Precio unitario prom.",
@@ -59,7 +59,7 @@ export default function OrdersTable({ data, pageSize = 8 }: OrdersTableProps) {
           </span>
         );
       },
-      className: "text-right hidden md:table-cell",
+      className: "text-center hidden md:table-cell",
     },
   ];
 

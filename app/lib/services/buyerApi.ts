@@ -23,7 +23,7 @@ export interface BuyerTopProduct {
 export interface BuyerFavourites {
   totalFavouriteEntries: number;
   totalSharedLists: number;
-  topFavouritedProducts: { productName?: string; name?: string; count?: number; total?: number }[];
+  topFavouritedProducts: { productName: string; userCount: number }[];
   topCategories: { category?: string; name?: string; count?: number; total?: number }[];
 }
 
@@ -80,7 +80,7 @@ async function fetchBuyerAnalytics(): Promise<BuyerAnalyticsResponse> {
       Authorization: `Bearer ${process.env.BUYER_API_KEY}`,
       "Content-Type": "application/json",
     },
-    next: { revalidate: 300 },
+    cache: "no-store",
   });
   if (!res.ok) throw new Error(`Buyer API error ${res.status}: ${process.env.BUYER_API_URL}`);
   return res.json() as Promise<BuyerAnalyticsResponse>;

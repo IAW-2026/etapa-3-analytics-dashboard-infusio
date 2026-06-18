@@ -32,7 +32,7 @@ export default async function DashboardPage() {
     <div className="space-y-8 max-w-screen-2xl">
       {/* KPI Cards */}
       <section>
-        <h2 className="text-xs tracking-[0.2em] text-muted-foreground uppercase font-medium mb-4">
+        <h2 className="text-sm tracking-[0.15em] text-muted-foreground uppercase font-semibold mb-4">
           Indicadores clave
         </h2>
         <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
@@ -101,7 +101,7 @@ export default async function DashboardPage() {
 
       {/* Charts */}
       <section>
-        <h2 className="text-xs tracking-[0.2em] text-muted-foreground uppercase font-medium mb-4">
+        <h2 className="text-sm tracking-[0.15em] text-muted-foreground uppercase font-semibold mb-4">
           Visualizaciones
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -126,7 +126,7 @@ export default async function DashboardPage() {
       <section>
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
-            <h2 className="text-xs tracking-[0.2em] text-muted-foreground uppercase font-medium">
+            <h2 className="text-sm tracking-[0.15em] text-muted-foreground uppercase font-semibold">
               Productos más vendidos
             </h2>
             <AppBadge source="buyer" />
@@ -178,8 +178,8 @@ export default async function DashboardPage() {
             <ul className="space-y-1.5">
               {favourites.topFavouritedProducts.slice(0, 5).map((p, i) => (
                 <li key={i} className="flex items-center justify-between text-sm">
-                  <span className="text-brown truncate">{p.productName ?? p.name}</span>
-                  <span className="text-xs text-muted-foreground ml-2 shrink-0">♥ {p.count ?? p.total}</span>
+                  <span className="text-brown truncate">{p.productName}</span>
+                  <span className="text-xs text-muted-foreground ml-2 shrink-0">♥ {p.userCount}</span>
                 </li>
               ))}
             </ul>

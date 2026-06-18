@@ -34,7 +34,7 @@ export default async function PaymentsPage() {
       {/* KPIs */}
       <section>
         <div className="flex items-center gap-3 mb-4">
-          <h2 className="text-xs tracking-[0.2em] text-muted-foreground uppercase font-medium">
+          <h2 className="text-sm tracking-[0.15em] text-muted-foreground uppercase font-semibold">
             Indicadores de pagos
           </h2>
           <AppBadge source="payments" />
@@ -62,7 +62,7 @@ export default async function PaymentsPage() {
 
       {/* Charts */}
       <section>
-        <h2 className="text-xs tracking-[0.2em] text-muted-foreground uppercase font-medium mb-4">
+        <h2 className="text-sm tracking-[0.15em] text-muted-foreground uppercase font-semibold mb-4">
           Análisis
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -82,7 +82,7 @@ export default async function PaymentsPage() {
       {/* Recent Payments Table */}
       <section>
         <div className="flex items-center gap-3 mb-4">
-          <h2 className="text-xs tracking-[0.2em] text-muted-foreground uppercase font-medium">
+          <h2 className="text-sm tracking-[0.15em] text-muted-foreground uppercase font-semibold">
             Pagos recientes
           </h2>
           <AppBadge source="payments" />

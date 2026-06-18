@@ -36,21 +36,21 @@ export default function PaymentsTable({ data, pageSize = 8 }: PaymentsTableProps
       render: (item: PaymentOrder) => (
         <span className="font-mono text-xs text-muted-foreground">{item.id}</span>
       ),
-      className: "text-left w-24",
+      className: "text-center w-36 whitespace-nowrap",
     },
     {
       header: "Comprador",
       render: (item: PaymentOrder) => (
         <span className="text-brown font-medium text-xs break-all">{item.userName}</span>
       ),
-      className: "text-left",
+      className: "text-center",
     },
     {
       header: "Orden de compra",
       render: (item: PaymentOrder) => (
         <span className="text-muted-foreground">{item.reason}</span>
       ),
-      className: "text-left hidden md:table-cell",
+      className: "text-center hidden md:table-cell",
     },
     {
       header: "Estado",
@@ -63,7 +63,7 @@ export default function PaymentsTable({ data, pageSize = 8 }: PaymentsTableProps
           {PAYMENT_LABELS[item.status] ?? item.status}
         </span>
       ),
-      className: "text-left",
+      className: "text-center",
     },
     {
       header: "Monto",
@@ -72,7 +72,7 @@ export default function PaymentsTable({ data, pageSize = 8 }: PaymentsTableProps
           ${item.amount.toLocaleString("es-AR", { minimumFractionDigits: 2 })}
         </span>
       ),
-      className: "text-right",
+      className: "text-center",
     },
     {
       header: "Fecha",
@@ -81,7 +81,7 @@ export default function PaymentsTable({ data, pageSize = 8 }: PaymentsTableProps
           {new Date(item.openedAt).toLocaleDateString("es-AR")}
         </span>
       ),
-      className: "text-right hidden lg:table-cell",
+      className: "text-center hidden lg:table-cell",
     },
   ];
 

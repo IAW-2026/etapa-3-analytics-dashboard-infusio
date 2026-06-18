@@ -12,12 +12,16 @@ interface PaginatedTableProps<T> {
   data: T[];
   columns: Column<T>[];
   pageSize?: number;
+  title?: string;
+  compact?: boolean;
 }
 
 export default function PaginatedTable<T>({
   data,
   columns,
   pageSize = 8,
+  title,
+  compact = false,
 }: PaginatedTableProps<T>) {
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -26,16 +30,24 @@ export default function PaginatedTable<T>({
   const endIndex = startIndex + pageSize;
   const paginatedData = data.slice(startIndex, endIndex);
 
+  const cellPadding = compact ? "px-4 py-2" : "px-6 py-4";
+  const headPadding = compact ? "px-4 py-2" : "px-6 py-3";
+
   return (
     <div className="space-y-4">
       <div className="bg-white rounded-2xl border border-tan shadow-sm overflow-hidden">
+        {title && (
+          <div className="px-6 py-4 border-b border-tan">
+            <h3 className="text-sm font-medium text-brown">{title}</h3>
+          </div>
+        )}
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-tan">
               {columns.map((col, index) => (
                 <th
                   key={index}
-                  className={`text-xs tracking-[0.15em] text-muted-foreground uppercase px-6 py-3 font-medium ${col.className || ""}`}
+                  className={`text-xs tracking-[0.15em] text-muted-foreground uppercase font-medium ${headPadding} ${col.className || ""}`}
                 >
                   {col.header}
                 </th>
@@ -49,7 +61,7 @@ export default function PaginatedTable<T>({
                 className="border-b border-tan/50 last:border-0 hover:bg-muted/30 transition-colors"
               >
                 {columns.map((col, colIdx) => (
-                  <td key={colIdx} className={`px-6 py-4 text-brown ${col.className || ""}`}>
+                  <td key={colIdx} className={`${cellPadding} text-brown ${col.className || ""}`}>
                     {col.render(item, startIndex + itemIdx)}
                   </td>
                 ))}
@@ -84,7 +96,7 @@ export default function PaginatedTable<T>({
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
               </svg>
             </button>
-            <span className="text-xs font-medium text-brown min-w-[80px] text-center">
+            <span className="text-xs font-medium text-brown min-w-20 text-center">
               {currentPage} / {totalPages}
             </span>
             <button
