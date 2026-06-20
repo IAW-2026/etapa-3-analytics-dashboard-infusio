@@ -25,7 +25,19 @@ export async function POST(req: NextRequest) {
     const content = result.text ?? "";
     return NextResponse.json({ content });
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Error desconocido";
-    return NextResponse.json({ error: message }, { status: 500 });
+    const raw = err instanceof Error ? err.message : "Error desconocido";
+
+    // Parse quota errors into a human-readable message
+    const retryMatch = raw.match(/retry[^0-9]*(\d+)/i);
+    const retryIn = retryMatch ? parseInt(retryMatch[1]) : null;
+
+    if (raw.includes("429") || raw.includes("RESOURCE_EXHAUSTED") || raw.includes("quota")) {
+      const msg = retryIn
+        ? `Límite de la API alcanzado. Reintentá en ${retryIn} segundos.`
+        : "Límite diario de la API alcanzado. El cupo se renueva mañana, o podés crear una nueva API key en aistudio.google.com.";
+      return NextResponse.json({ error: msg }, { status: 429 });
+    }
+
+    return NextResponse.json({ error: raw }, { status: 500 });
   }
 }
