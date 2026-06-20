@@ -53,7 +53,7 @@ export default async function InsightsPage() {
           Infusio Insights
         </h2>
         <p className="text-xs text-muted-foreground mb-6">
-          Análisis cruzado de las 4 apps del ecosistema · Powered by Gemini
+          Análisis cruzado de las 4 apps del ecosistema · Powered by Groq
         </p>
         <InsightsPanel data={payload} />
       </section>

@@ -34,51 +34,51 @@ function pct(part: number, total: number): string {
 // ─── PDF styles ───────────────────────────────────────────────────────────────
 
 const s = StyleSheet.create({
-  page:          { fontFamily: "Helvetica", fontSize: 9, color: "#2d2926", padding: "1.5cm 1.8cm", backgroundColor: "#ffffff" },
+  page:          { fontFamily: "Helvetica", fontSize: 9, color: "#2d2926", padding: "0.8cm 1.5cm", backgroundColor: "#ffffff" },
   // header
-  header:        { flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 16 },
-  brand:         { fontSize: 18, letterSpacing: 3 },
-  brandSub:      { fontSize: 6.5, letterSpacing: 2, color: "#8a8278", marginTop: 3 },
-  reportTitle:   { fontSize: 10, textAlign: "right" },
-  reportDate:    { fontSize: 6.5, color: "#8a8278", textAlign: "right", marginTop: 3, letterSpacing: 1 },
-  hr:            { borderBottomWidth: 0.5, borderBottomColor: "#d4cfc5", marginVertical: 12 },
-  hrThin:        { borderBottomWidth: 0.5, borderBottomColor: "#ede9e3", marginVertical: 8 },
+  header:        { flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 },
+  brand:         { fontSize: 15, letterSpacing: 3 },
+  brandSub:      { fontSize: 6, letterSpacing: 2, color: "#8a8278", marginTop: 2 },
+  reportTitle:   { fontSize: 9, textAlign: "right" },
+  reportDate:    { fontSize: 6, color: "#8a8278", textAlign: "right", marginTop: 2, letterSpacing: 1 },
+  hr:            { borderBottomWidth: 0.5, borderBottomColor: "#d4cfc5", marginVertical: 8 },
+  hrThin:        { borderBottomWidth: 0.5, borderBottomColor: "#ede9e3", marginVertical: 5 },
   // KPI tiles
-  kpiRow:        { flexDirection: "row", gap: 10, marginBottom: 16 },
-  kpiBlock:      { flex: 1, borderWidth: 0.5, borderColor: "#d4cfc5", padding: "8 10" },
-  kpiLabel:      { fontSize: 5.5, letterSpacing: 2.5, color: "#8a8278", marginBottom: 4, fontFamily: "Helvetica-Bold" },
-  kpiValue:      { fontSize: 15, color: "#2d2926", marginBottom: 2 },
-  kpiSub:        { fontSize: 6.5, color: "#5a5450" },
+  kpiRow:        { flexDirection: "row", gap: 8, marginBottom: 10 },
+  kpiBlock:      { flex: 1, borderWidth: 0.5, borderColor: "#d4cfc5", padding: "5 8" },
+  kpiLabel:      { fontSize: 5.5, letterSpacing: 2.5, color: "#8a8278", marginBottom: 3, fontFamily: "Helvetica-Bold" },
+  kpiValue:      { fontSize: 13, color: "#2d2926", marginBottom: 2 },
+  kpiSub:        { fontSize: 6, color: "#5a5450" },
   // Two-column layout
-  twoCol:        { flexDirection: "row", gap: 20, flex: 1 },
+  twoCol:        { flexDirection: "row", gap: 16, flex: 1 },
   colLeft:       { flex: 1 },
-  colRight:      { width: 195 },
+  colRight:      { width: 185 },
   // Section titles
-  sectionTitle:  { fontSize: 6.5, letterSpacing: 2, color: "#8a8278", fontFamily: "Helvetica-Bold", marginBottom: 6, marginTop: 2 },
+  sectionTitle:  { fontSize: 6.5, letterSpacing: 2, color: "#8a8278", fontFamily: "Helvetica-Bold", marginBottom: 4, marginTop: 1 },
   // Mini table (for distributions)
-  miniRow:       { flexDirection: "row", paddingVertical: 5, borderBottomWidth: 0.5, borderBottomColor: "#ede9e3" },
-  miniRowHead:   { flexDirection: "row", paddingVertical: 4, borderBottomWidth: 1, borderBottomColor: "#d4cfc5", marginBottom: 1 },
+  miniRow:       { flexDirection: "row", paddingVertical: 3.5, borderBottomWidth: 0.5, borderBottomColor: "#ede9e3" },
+  miniRowHead:   { flexDirection: "row", paddingVertical: 3, borderBottomWidth: 1, borderBottomColor: "#d4cfc5", marginBottom: 1 },
   miniCell:      { fontSize: 7, color: "#2d2926", flex: 1 },
   miniCellBold:  { fontSize: 7, color: "#2d2926", flex: 1, fontFamily: "Helvetica-Bold" },
   miniCellRight: { fontSize: 7, color: "#5a5450", width: 50, textAlign: "right" },
   miniCellPct:   { fontSize: 7, color: "#8a8278", width: 40, textAlign: "right" },
   // Main table
-  tableHead:     { flexDirection: "row", backgroundColor: "#2d2926", paddingVertical: 6 },
+  tableHead:     { flexDirection: "row", backgroundColor: "#2d2926", paddingVertical: 5 },
   tableHeadCell: { fontSize: 6, letterSpacing: 1.5, color: "#f5f3ef", fontFamily: "Helvetica-Bold", paddingHorizontal: 5 },
-  tableRow:      { flexDirection: "row", paddingVertical: 6, borderBottomWidth: 0.5, borderBottomColor: "#ede9e3" },
-  tableRowAlt:   { flexDirection: "row", paddingVertical: 6, borderBottomWidth: 0.5, borderBottomColor: "#ede9e3", backgroundColor: "#faf8f5" },
+  tableRow:      { flexDirection: "row", paddingVertical: 5, borderBottomWidth: 0.5, borderBottomColor: "#ede9e3" },
+  tableRowAlt:   { flexDirection: "row", paddingVertical: 5, borderBottomWidth: 0.5, borderBottomColor: "#ede9e3", backgroundColor: "#faf8f5" },
   cell:          { fontSize: 7, color: "#2d2926", paddingHorizontal: 5 },
   cellMuted:     { fontSize: 7, color: "#8a8278", paddingHorizontal: 5 },
   cellRight:     { fontSize: 7, color: "#2d2926", paddingHorizontal: 5, textAlign: "right" },
   cellRightMuted:{ fontSize: 7, color: "#8a8278", paddingHorizontal: 5, textAlign: "right" },
   // Stat block (compact KV pairs)
-  statBlock:     { borderWidth: 0.5, borderColor: "#d4cfc5", padding: "8 10", marginBottom: 8 },
-  statBlockTitle:{ fontSize: 6, letterSpacing: 2, color: "#8a8278", fontFamily: "Helvetica-Bold", marginBottom: 5 },
-  statRow:       { flexDirection: "row", justifyContent: "space-between", paddingVertical: 3, borderBottomWidth: 0.5, borderBottomColor: "#f0ede8" },
+  statBlock:     { borderWidth: 0.5, borderColor: "#d4cfc5", padding: "5 8", marginBottom: 6 },
+  statBlockTitle:{ fontSize: 6, letterSpacing: 2, color: "#8a8278", fontFamily: "Helvetica-Bold", marginBottom: 4 },
+  statRow:       { flexDirection: "row", justifyContent: "space-between", paddingVertical: 2, borderBottomWidth: 0.5, borderBottomColor: "#f0ede8" },
   statLabel:     { fontSize: 7, color: "#5a5450" },
   statValue:     { fontSize: 7, color: "#2d2926", fontFamily: "Helvetica-Bold" },
   // Footer
-  footer:        { marginTop: 12, borderTopWidth: 0.5, borderTopColor: "#d4cfc5", paddingTop: 8, flexDirection: "row", justifyContent: "space-between" },
+  footer:        { marginTop: 8, borderTopWidth: 0.5, borderTopColor: "#d4cfc5", paddingTop: 6, flexDirection: "row", justifyContent: "space-between" },
   footerText:    { fontSize: 6.5, color: "#8a8278", letterSpacing: 0.5 },
 });
 
@@ -248,7 +248,7 @@ export async function GET(req: NextRequest) {
       React.createElement(View, { style: s.kpiBlock },
         React.createElement(Text, { style: s.kpiLabel }, "PEDIDOS"),
         React.createElement(Text, { style: s.kpiValue }, String(overview.totalOrders)),
-        React.createElement(Text, { style: s.kpiSub }, `Confirmados: ${overview.confirmedOrders} · Cancelados: ${overview.cancelledOrders} (${cancellationRate})`)
+        React.createElement(Text, { style: s.kpiSub }, `Conf: ${overview.confirmedOrders} · Canc: ${overview.cancelledOrders} (${cancellationRate})`)
       ),
       React.createElement(View, { style: s.kpiBlock },
         React.createElement(Text, { style: s.kpiLabel }, "USUARIOS"),
@@ -258,7 +258,7 @@ export async function GET(req: NextRequest) {
       React.createElement(View, { style: s.kpiBlock },
         React.createElement(Text, { style: s.kpiLabel }, "CARRITOS ABANDONADOS"),
         React.createElement(Text, { style: s.kpiValue }, String(overview.abandonedCarts)),
-        React.createElement(Text, { style: s.kpiSub }, `Valor en riesgo: $${overview.abandonedCartValue.toLocaleString("es-AR")} (${abandonmentRate} usuarios)`)
+        React.createElement(Text, { style: s.kpiSub }, `Riesgo: $${overview.abandonedCartValue.toLocaleString("es-AR")} · ${abandonmentRate} usuarios`)
       ),
       React.createElement(View, { style: s.kpiBlock },
         React.createElement(Text, { style: s.kpiLabel }, "ENVÍOS"),
@@ -268,7 +268,7 @@ export async function GET(req: NextRequest) {
       React.createElement(View, { style: s.kpiBlock },
         React.createElement(Text, { style: s.kpiLabel }, "PAGOS"),
         React.createElement(Text, { style: s.kpiValue }, `${paymentStats.conversionRate}%`),
-        React.createElement(Text, { style: s.kpiSub }, `Conv. · ${paymentStats.successfulPayments} exitosos · ${paymentStats.failedPayments} fallidos`)
+        React.createElement(Text, { style: s.kpiSub }, `Conv. · ${paymentStats.successfulPayments} exit. · ${paymentStats.failedPayments} fall.`)
       )
     ),
 

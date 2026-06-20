@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { GoogleGenAI } from "@google/genai";
+import Groq from "groq-sdk";
 import { buildPrompt, type InsightsPayload } from "@/app/lib/insightsPrompt";
 
-const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 export async function POST(req: NextRequest) {
-  if (!process.env.GEMINI_API_KEY) {
-    return NextResponse.json({ error: "GEMINI_API_KEY no configurado" }, { status: 500 });
+  if (!process.env.GROQ_API_KEY) {
+    return NextResponse.json({ error: "GROQ_API_KEY no configurado" }, { status: 500 });
   }
 
   let payload: InsightsPayload;
@@ -18,24 +18,22 @@ export async function POST(req: NextRequest) {
 
   try {
     const prompt = buildPrompt(payload);
-    const result = await genAI.models.generateContent({
-      model: "gemini-2.0-flash",
-      contents: prompt,
+    const completion = await groq.chat.completions.create({
+      model: "llama-3.3-70b-versatile",
+      messages: [{ role: "user", content: prompt }],
+      temperature: 0.7,
+      max_tokens: 2048,
     });
-    const content = result.text ?? "";
+    const content = completion.choices[0]?.message?.content ?? "";
     return NextResponse.json({ content });
   } catch (err) {
     const raw = err instanceof Error ? err.message : "Error desconocido";
 
-    // Parse quota errors into a human-readable message
-    const retryMatch = raw.match(/retry[^0-9]*(\d+)/i);
-    const retryIn = retryMatch ? parseInt(retryMatch[1]) : null;
-
-    if (raw.includes("429") || raw.includes("RESOURCE_EXHAUSTED") || raw.includes("quota")) {
-      const msg = retryIn
-        ? `Límite de la API alcanzado. Reintentá en ${retryIn} segundos.`
-        : "Límite diario de la API alcanzado. El cupo se renueva mañana, o podés crear una nueva API key en aistudio.google.com.";
-      return NextResponse.json({ error: msg }, { status: 429 });
+    if (raw.includes("429") || raw.includes("rate_limit") || raw.includes("quota")) {
+      return NextResponse.json(
+        { error: "Límite de la API alcanzado. Esperá unos segundos y volvé a intentar." },
+        { status: 429 }
+      );
     }
 
     return NextResponse.json({ error: raw }, { status: 500 });

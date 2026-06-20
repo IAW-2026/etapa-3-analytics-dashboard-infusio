@@ -187,7 +187,7 @@ export default function InsightsPanel({ data }: Props) {
         <div>
           <p className="text-sm font-medium text-brown mb-1">Análisis con Inteligencia Artificial</p>
           <p className="text-xs text-muted-foreground leading-relaxed max-w-lg">
-            Gemini analiza los datos consolidados de las 4 apps del ecosistema y genera insights cruzados,
+            Groq analiza los datos consolidados de las 4 apps del ecosistema y genera insights cruzados,
             alertas y predicciones que no son visibles mirando cada sistema por separado.
           </p>
         </div>
