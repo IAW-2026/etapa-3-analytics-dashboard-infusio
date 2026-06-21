@@ -31,6 +31,16 @@ const SHIPMENT_LABELS: Record<string, string> = {
   failed: "Fallido",
 };
 
+function parseShipmentDate(dateStr: string): string {
+  // Handles both "21/6/2026" (DD/M/YYYY from real API) and ISO strings (mocks)
+  const parts = dateStr.split("/");
+  if (parts.length === 3) {
+    const d = new Date(Number(parts[2]), Number(parts[1]) - 1, Number(parts[0]));
+    return d.toLocaleDateString("es-AR");
+  }
+  return new Date(dateStr).toLocaleDateString("es-AR");
+}
+
 export default function ShippingTable({ data, pageSize = 8 }: ShippingTableProps) {
   const columns = [
     {
@@ -43,7 +53,7 @@ export default function ShippingTable({ data, pageSize = 8 }: ShippingTableProps
     {
       header: "Pedido",
       render: (item: Shipment) => (
-        <span className="font-mono text-xs text-muted-foreground">{item.orderId}</span>
+        <span className="font-mono text-xs text-muted-foreground">{item.orderId || "—"}</span>
       ),
       className: "text-center hidden md:table-cell w-28",
     },
@@ -57,7 +67,7 @@ export default function ShippingTable({ data, pageSize = 8 }: ShippingTableProps
     {
       header: "Transportista",
       render: (item: Shipment) => (
-        <span className="text-muted-foreground">{item.carrier}</span>
+        <span className="text-muted-foreground">{item.carrier || "—"}</span>
       ),
       className: "text-center hidden lg:table-cell",
     },
@@ -78,7 +88,7 @@ export default function ShippingTable({ data, pageSize = 8 }: ShippingTableProps
       header: "Fecha envío",
       render: (item: Shipment) => (
         <span className="text-muted-foreground text-xs">
-          {new Date(item.createdAt).toLocaleDateString("es-AR")}
+          {parseShipmentDate(item.createdAt)}
         </span>
       ),
       className: "text-center hidden md:table-cell",

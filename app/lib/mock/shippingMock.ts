@@ -1,4 +1,4 @@
-import type { ShippingStats, Shipment, ShippingStatusPoint, DeliveryTimePoint } from "@/app/lib/services/shippingApi";
+import type { ShippingStats, Shipment, ShippingStatusPoint, DeliveryTimePoint, Rider } from "@/app/lib/services/shippingApi";
 
 const stats: ShippingStats = {
   totalShipments: 2190,
@@ -44,9 +44,18 @@ const deliveryTimeData: DeliveryTimePoint[] = [
   { days: "6+ días", count: 52 },
 ];
 
+const riders: Rider[] = [
+  { id: "rider_001", name: "Lucía Fernández", email: "lucia.fernandez@infusio.com" },
+  { id: "rider_002", name: "Matías Romero", email: "matias.romero@infusio.com" },
+  { id: "rider_003", name: "Valentina Cruz", email: "valentina.cruz@infusio.com" },
+  { id: "rider_004", name: "Sebastián Díaz", email: "sebastian.diaz@infusio.com" },
+  { id: "rider_005", name: "Camila Torres", email: "camila.torres@infusio.com" },
+];
+
 export const shippingMock = {
   stats,
   recentShipments,
   statusData,
   deliveryTimeData,
+  riders,
 };

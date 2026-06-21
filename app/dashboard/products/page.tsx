@@ -40,13 +40,7 @@ export default async function ProductsPage() {
           <KpiCard label="En stock" value={stats.inStock} delta={2.1} deltaPositive appSource="seller" />
           <KpiCard label="Stock bajo" value={stats.lowStock} delta={-5.0} deltaPositive={false} appSource="seller" />
           <KpiCard label="Sin stock" value={stats.outOfStock} appSource="seller" />
-          <KpiCard
-            label="Rating promedio"
-            value={`${stats.avgRating}/5.0`}
-            delta={0.2}
-            deltaPositive
-            appSource="seller"
-          />
+          <KpiCard label="Categoría top" value={stats.topCategory} appSource="seller" />
         </div>
       </section>
 

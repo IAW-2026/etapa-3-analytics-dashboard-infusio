@@ -88,7 +88,8 @@ export default function PaginatedTable<T>({
           <div className="flex items-center gap-2">
             <button
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-              disabled={currentPage === 1}
+              disabled={currentPage === 1 || undefined}
+              suppressHydrationWarning
               className="p-1.5 rounded-lg border border-tan text-brown bg-white hover:bg-cream disabled:opacity-50 disabled:pointer-events-none transition-colors"
               aria-label="Página anterior"
             >
@@ -101,7 +102,8 @@ export default function PaginatedTable<T>({
             </span>
             <button
               onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-              disabled={currentPage === totalPages}
+              disabled={currentPage === totalPages || undefined}
+              suppressHydrationWarning
               className="p-1.5 rounded-lg border border-tan text-brown bg-white hover:bg-cream disabled:opacity-50 disabled:pointer-events-none transition-colors"
               aria-label="Página siguiente"
             >

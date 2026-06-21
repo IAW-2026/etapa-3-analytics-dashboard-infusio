@@ -29,9 +29,9 @@ interface Props {
 export default function CategoryRevenueChart({ data }: Props) {
   return (
     <div className="bg-white rounded-2xl border border-tan p-6 shadow-sm">
-      <h3 className="text-sm font-medium text-brown">Ingresos por categoría</h3>
+      <h3 className="text-sm font-medium text-brown">Valor de inventario por categoría</h3>
       <p className="text-xs tracking-[0.15em] text-muted-foreground uppercase mt-0.5 mb-5">
-        Acumulado histórico
+        Precio × stock disponible
       </p>
       <ResponsiveContainer width="100%" height={220}>
         <BarChart data={data} margin={{ top: 4, right: 4, bottom: 0, left: 0 }}>

@@ -9,7 +9,6 @@ interface Product {
   category: string;
   price: number;
   stock: number;
-  rating: number;
   revenue: number;
 }
 
@@ -63,15 +62,6 @@ export default function ProductsTable({ data, pageSize = 8 }: ProductsTableProps
           </span>
         );
       },
-      className: "text-center hidden lg:table-cell",
-    },
-    {
-      header: "Rating",
-      render: (item: Product) => (
-        <span className="text-muted-foreground">
-          {"★".repeat(Math.round(item.rating))} {item.rating.toFixed(1)}
-        </span>
-      ),
       className: "text-center hidden lg:table-cell",
     },
     {

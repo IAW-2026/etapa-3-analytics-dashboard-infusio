@@ -75,7 +75,11 @@ const STATUS_LABELS: Record<string, string> = {
 };
 
 async function fetchBuyerAnalytics(): Promise<BuyerAnalyticsResponse> {
-  const res = await fetch(process.env.BUYER_API_URL!, {
+  if (process.env.ENABLE_MOCKS === "true" || !process.env.BUYER_API_URL) {
+    const { buyerMock } = await import("@/app/lib/mock/buyerMock");
+    return buyerMock as unknown as BuyerAnalyticsResponse;
+  }
+  const res = await fetch(process.env.BUYER_API_URL, {
     headers: {
       Authorization: `Bearer ${process.env.BUYER_API_KEY}`,
       "Content-Type": "application/json",

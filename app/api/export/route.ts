@@ -180,11 +180,10 @@ export async function GET(req: NextRequest) {
     lines.push(csvRow("En stock", sellerStats.inStock));
     lines.push(csvRow("Stock bajo", sellerStats.lowStock));
     lines.push(csvRow("Sin stock", sellerStats.outOfStock));
-    lines.push(csvRow("Rating promedio", sellerStats.avgRating));
     lines.push("");
     lines.push("TOP PRODUCTOS SELLER");
-    lines.push(csvRow("Producto", "Ingresos", "Stock", "Rating"));
-    for (const p of topSellerProducts) lines.push(csvRow(p.name, `$${p.revenue.toLocaleString("es-AR")}`, p.stock, p.rating));
+    lines.push(csvRow("Producto", "Ingresos", "Stock"));
+    for (const p of topSellerProducts) lines.push(csvRow(p.name, `$${p.revenue.toLocaleString("es-AR")}`, p.stock));
     lines.push("");
     lines.push("LOGÍSTICA (SHIPPING APP)");
     lines.push(csvRow("Total envíos", shippingStats.totalShipments));
@@ -382,14 +381,12 @@ export async function GET(req: NextRequest) {
           React.createElement(Text, { style: { ...s.tableHeadCell, flex: 1 } }, "PRODUCTO"),
           React.createElement(Text, { style: { ...s.tableHeadCell, width: 55, textAlign: "right" } }, "INGRESOS"),
           React.createElement(Text, { style: { ...s.tableHeadCell, width: 35, textAlign: "right" } }, "STOCK"),
-          React.createElement(Text, { style: { ...s.tableHeadCell, width: 35, textAlign: "right" } }, "RATING"),
         ),
         ...topSellerProducts.slice(0, 8).map((p, idx) =>
           React.createElement(View, { key: p.name, style: idx % 2 === 0 ? s.tableRow : s.tableRowAlt },
             React.createElement(Text, { style: { ...s.cell, flex: 1 } }, p.name),
             React.createElement(Text, { style: { ...s.cellRight, width: 55 } }, `$${p.revenue.toLocaleString("es-AR")}`),
-            React.createElement(Text, { style: { ...s.cellRight, width: 35 } }, String(p.stock)),
-            React.createElement(Text, { style: { ...s.cellRightMuted, width: 35 } }, String(p.rating))
+            React.createElement(Text, { style: { ...s.cellRight, width: 35 } }, String(p.stock))
           )
         ),
         HR_THIN(),
@@ -398,7 +395,6 @@ export async function GET(req: NextRequest) {
           ["En stock", String(sellerStats.inStock)],
           ["Stock bajo", String(sellerStats.lowStock)],
           ["Sin stock", String(sellerStats.outOfStock)],
-          ["Rating promedio", String(sellerStats.avgRating)],
           ["Categoría top", sellerStats.topCategory],
         ])
       ),

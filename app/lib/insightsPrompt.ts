@@ -23,10 +23,9 @@ export interface InsightsPayload {
       inStock: number;
       lowStock: number;
       outOfStock: number;
-      avgRating: number;
       topCategory: string;
     };
-    topProducts: { name: string; revenue: number; stock: number; rating: number }[];
+    topProducts: { name: string; revenue: number; stock: number }[];
     categoryData: { category: string; count: number; revenue: number }[];
   };
   shipping: {
@@ -73,7 +72,7 @@ export function buildPrompt(data: InsightsPayload): string {
 
   const topSellerProducts = seller.topProducts
     .slice(0, 5)
-    .map((p) => `${p.name}: stock=${p.stock}, rev=$${p.revenue.toLocaleString()}, rating=${p.rating}`)
+    .map((p) => `${p.name}: stock=${p.stock}, rev=$${p.revenue.toLocaleString()}`)
     .join("\n");
 
   const categories = seller.categoryData
@@ -112,8 +111,8 @@ ${topBuyerProducts}
 
 CATÁLOGO (Seller App):
 - Productos: ${seller.stats.totalProducts} total | ${seller.stats.inStock} en stock | ${seller.stats.lowStock} stock bajo | ${seller.stats.outOfStock} sin stock
-- Rating promedio: ${seller.stats.avgRating}/5 | Categoría top: ${seller.stats.topCategory}
-- Top productos (stock/revenue/rating):
+- Categoría top: ${seller.stats.topCategory}
+- Top productos (stock/revenue):
 ${topSellerProducts}
 - Categorías: ${categories}
 

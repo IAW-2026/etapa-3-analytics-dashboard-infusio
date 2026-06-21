@@ -1,7 +1,7 @@
 import KpiCard from "@/app/ui/KpiCard";
 import AppBadge from "@/app/ui/AppBadge";
 import { DynamicShippingStatusChart, DynamicDeliveryTimeChart } from "@/app/ui/DynamicCharts";
-import { getShippingStats, getRecentShipments, getShippingStatusData, getDeliveryTimeData } from "@/app/lib/services/shippingApi";
+import { getShippingStats, getRecentShipments, getShippingStatusData, getDeliveryTimeData, getRiders } from "@/app/lib/services/shippingApi";
 
 const SHIPMENT_STYLES: Record<string, string> = {
   delivered: "bg-olive/10 text-olive",
@@ -18,13 +18,15 @@ const SHIPMENT_LABELS: Record<string, string> = {
 };
 
 import ShippingTable from "@/app/ui/tables/ShippingTable";
+import RidersTable from "@/app/ui/tables/RidersTable";
 
 export default async function ShippingPage() {
-  const [stats, recentShipments, statusData, deliveryTimeData] = await Promise.all([
+  const [stats, recentShipments, statusData, deliveryTimeData, riders] = await Promise.all([
     getShippingStats(),
     getRecentShipments(15),
     getShippingStatusData(),
     getDeliveryTimeData(),
+    getRiders(),
   ]);
 
   return (
@@ -72,6 +74,17 @@ export default async function ShippingPage() {
           <AppBadge source="shipping" />
         </div>
         <ShippingTable data={recentShipments} />
+      </section>
+
+      {/* Riders */}
+      <section>
+        <div className="flex items-center gap-3 mb-4">
+          <h2 className="text-sm tracking-[0.15em] text-muted-foreground uppercase font-semibold">
+            Repartidores
+          </h2>
+          <AppBadge source="shipping" />
+        </div>
+        <RidersTable data={riders} />
       </section>
     </div>
   );

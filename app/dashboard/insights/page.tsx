@@ -30,7 +30,6 @@ export default async function InsightsPage() {
         name: p.name,
         revenue: p.revenue,
         stock: p.stock,
-        rating: p.rating,
       })),
       categoryData: categoryData.map((c) => ({
         category: c.category,

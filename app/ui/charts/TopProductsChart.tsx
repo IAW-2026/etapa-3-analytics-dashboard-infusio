@@ -29,9 +29,9 @@ export default function TopProductsChart({ data }: Props) {
 
   return (
     <div className="bg-white rounded-2xl border border-tan p-6 shadow-sm">
-      <h3 className="text-sm font-medium text-brown">Top productos por ingresos</h3>
+      <h3 className="text-sm font-medium text-brown">Productos más vendidos</h3>
       <p className="text-xs tracking-[0.15em] text-muted-foreground uppercase mt-0.5 mb-5">
-        Acumulado histórico
+        Por ingresos · Buyer App
       </p>
       <ResponsiveContainer width="100%" height={260}>
         <BarChart
