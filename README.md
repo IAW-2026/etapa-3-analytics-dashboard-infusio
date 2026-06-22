@@ -7,6 +7,18 @@ Herramienta de reportes consolidados (Etapa 3): métricas del sistema completo c
 
 Esta aplicación es desarrollada por dos integrantes de la comisión Infusio: Emalhao Lautaro y Vives María de los Milagros
 
+**Deploy:** [https://proyecto-c-buyer-infusio.vercel.app]]https://etapa-3-analytics-dashboard-infusio.vercel.app/)
+
+**Docs:** 
+
+---
+
+## Acceso
+
+| Rol | Email | Contraseña |
+|-----|-------|------------|
+| Administrador | admin@infusio.com | Infusio2024! |
+
 ---
 
 Enunciado completo: <https://iaw-2026.github.io/proyecto/>
