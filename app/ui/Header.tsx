@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import ExportDropdown from "@/app/ui/ExportDropdown";
+import ThemeToggle from "@/app/ui/ThemeToggle";
 
 const PAGE_TITLES: Record<string, string> = {
   "/dashboard": "Resumen General",
@@ -45,6 +46,7 @@ export default function Header({ onMenuToggle }: HeaderProps) {
       </div>
       <div className="flex items-center gap-4">
         {pathname === "/dashboard" && <ExportDropdown />}
+        <ThemeToggle />
         <span className="flex items-center gap-1.5 text-xs font-medium text-terracotta bg-terracotta/10 px-3 py-1.5 rounded-full">
           <span className="w-1.5 h-1.5 rounded-full bg-terracotta animate-pulse" />
           EN VIVO

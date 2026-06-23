@@ -14,7 +14,7 @@ export default function StatusOverview({ mocksEnabled, timestamp, services }: St
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
       <div className="bg-white rounded-2xl border border-tan p-5 shadow-sm">
         <p className="text-xs tracking-[0.15em] text-muted-foreground uppercase">Origen de Datos</p>
-        <p className="text-lg font-bold text-[#4a453d] mt-1">
+        <p className="text-lg font-bold text-brown mt-1">
           {mocksEnabled ? "Simulados (Mocks)" : "Servicios en Vivo"}
         </p>
         <p className="text-xs text-muted-foreground mt-1">
@@ -26,7 +26,7 @@ export default function StatusOverview({ mocksEnabled, timestamp, services }: St
 
       <div className="bg-white rounded-2xl border border-tan p-5 shadow-sm">
         <p className="text-xs tracking-[0.15em] text-muted-foreground uppercase">Último Control</p>
-        <p className="text-lg font-bold text-[#4a453d] mt-1">
+        <p className="text-lg font-bold text-brown mt-1">
           {new Date(timestamp).toLocaleTimeString("es-AR", {
             hour: "2-digit",
             minute: "2-digit",
@@ -45,7 +45,7 @@ export default function StatusOverview({ mocksEnabled, timestamp, services }: St
 
       <div className="bg-white rounded-2xl border border-tan p-5 shadow-sm">
         <p className="text-xs tracking-[0.15em] text-muted-foreground uppercase">Servicios Online</p>
-        <p className="text-lg font-bold text-[#4a453d] mt-1">
+        <p className="text-lg font-bold text-brown mt-1">
           {onlineCount} / {services.length}
         </p>
         <div className="w-full bg-[#f4f1ea] rounded-full h-1.5 mt-2">

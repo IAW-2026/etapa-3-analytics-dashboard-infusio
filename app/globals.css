@@ -18,6 +18,40 @@
   --border: #d4cfc5;
   --input: #d4cfc5;
   --ring: #6b7056;
+
+  /* Custom branding values */
+  --cream: #f5f3ef;
+  --tan: #d4cfc5;
+  --brown: #2d2926;
+  --white-bg: #ffffff;
+  --sidebar-bg: #4a453d;
+}
+
+.dark {
+  --background: #121110;
+  --foreground: #f3f0ea;
+  --card: #1c1a18;
+  --card-foreground: #f3f0ea;
+  --primary: #858b70;
+  --primary-foreground: #121110;
+  --secondary: #2c2825;
+  --secondary-foreground: #f3f0ea;
+  --muted: #22201e;
+  --muted-foreground: #9a948e;
+  --accent: #b07d62;
+  --accent-foreground: #121110;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #2c2825;
+  --input: #2c2825;
+  --ring: #858b70;
+
+  /* Custom branding values dark overrides */
+  --cream: #121110;
+  --tan: #2c2825;
+  --brown: #f3f0ea;
+  --white-bg: #1c1a18;
+  --sidebar-bg: #1a1816;
 }
 
 @theme inline {
@@ -42,21 +76,27 @@
   --color-ring: var(--ring);
   --color-olive: #6b7056;
   --color-terracotta: #9b4a30;
-  --color-cream: #f5f3ef;
-  --color-tan: #d4cfc5;
-  --color-brown: #2d2926;
+
+  /* Map branding classes to custom CSS variables */
+  --color-cream: var(--cream);
+  --color-tan: var(--tan);
+  --color-brown: var(--brown);
+  --color-sidebar: var(--sidebar-bg);
 }
 
 @layer base {
+
   *,
   *::before,
   *::after {
     border-color: var(--border);
     box-sizing: border-box;
   }
+
   html {
     scroll-behavior: smooth;
   }
+
   body {
     background-color: var(--background);
     color: var(--foreground);
@@ -64,6 +104,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
   ::selection {
     background-color: var(--accent);
     color: var(--accent-foreground);
@@ -73,6 +114,11 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Make all bg-white panels adapt to dark card color in dark mode */
+  .dark .bg-white {
+    background-color: var(--card) !important;
   }
 }
 
@@ -84,7 +130,46 @@
   font-weight: 500;
   transition: color 0.2s ease;
 }
+
 .cl-userButtonOuterIdentifier:hover {
   color: #ffffff !important;
 }
 
+/* Recharts and Accessibility Adjustments for Dark Mode */
+.dark .recharts-cartesian-axis-tick text {
+  fill: #aeadab !important; /* Lighter labels for chart axis values */
+}
+.dark .recharts-cartesian-grid line {
+  stroke: #2c2825 !important; /* Subtle grid lines */
+}
+.dark .recharts-legend-item-text {
+  color: #f4f1eb !important;
+}
+.dark [style*="color: rgb(107, 101, 96)"], 
+.dark [style*="color: #6b6560"],
+.dark .text-muted-foreground span.font-medium {
+  color: #f4f1eb !important; /* High contrast numbers for charts and pagination */
+}
+
+/* Dark Mode status badges and progress bar overrides */
+.dark .bg-yellow-50 {
+  background-color: rgba(234, 179, 8, 0.15) !important;
+  color: #facc15 !important;
+}
+.dark .bg-red-50 {
+  background-color: rgba(239, 68, 68, 0.15) !important;
+  color: #f87171 !important;
+}
+.dark .bg-blue-50 {
+  background-color: rgba(59, 130, 246, 0.15) !important;
+  color: #60a5fa !important;
+}
+.dark .bg-olive\/10 {
+  background-color: rgba(148, 156, 121, 0.2) !important;
+}
+.dark .text-olive {
+  color: #a4ad8a !important; /* Lighter high contrast olive */
+}
+.dark .bg-\[\#f4f1ea\] {
+  background-color: var(--tan) !important; /* Adapt progress bar background in status page */
+}

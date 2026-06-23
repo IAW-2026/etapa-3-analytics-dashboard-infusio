@@ -78,7 +78,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
         <div className="space-y-2 bg-[#f4f1ea]/40 rounded-xl p-3.5 border border-tan/30 text-[11px] font-mono text-muted-foreground mb-6">
           <div className="flex justify-between gap-4 overflow-hidden">
             <span className="shrink-0 text-brown">Endpoint:</span>
-            <span className="truncate text-right" title={service.url}>
+            <span className="truncate text-right text-brown font-medium" title={service.url}>
               {maskUrl(service.url)}
             </span>
           </div>
