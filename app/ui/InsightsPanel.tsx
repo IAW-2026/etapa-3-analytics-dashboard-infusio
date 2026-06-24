@@ -194,7 +194,7 @@ export default function InsightsPanel({ data }: Props) {
         <button
           onClick={handleGenerate}
           disabled={isWorking}
-          className="shrink-0 inline-flex items-center gap-2 bg-olive text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-olive/90 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+          className="shrink-0 inline-flex items-center gap-2 bg-olive text-white dark:text-[#121110] px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-olive/90 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
         >
           {isWorking ? (
             <>

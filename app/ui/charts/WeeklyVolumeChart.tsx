@@ -62,7 +62,7 @@ export default function WeeklyVolumeChart({
               onClick={() => setRange(i)}
               className={`text-xs px-2.5 py-1 rounded-lg border transition-colors ${
                 range === i
-                  ? "bg-olive text-white border-olive"
+                  ? "bg-olive text-white dark:text-[#121110] border-olive"
                   : "bg-white text-muted-foreground border-tan hover:border-olive/50"
               }`}
             >

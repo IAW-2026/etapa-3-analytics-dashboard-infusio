@@ -33,7 +33,7 @@ export default function UnauthorizedPage() {
 
         <div className="flex flex-col gap-3">
           <SignOutButton signOutOptions={{ redirectUrl: "/" }}>
-            <button className="w-full bg-olive text-white px-5 py-3 rounded-2xl font-medium shadow-sm hover:bg-olive/90 transition-colors cursor-pointer">
+            <button className="w-full bg-olive text-white dark:text-[#121110] px-5 py-3 rounded-2xl font-medium shadow-sm hover:bg-olive/90 transition-colors cursor-pointer">
               Cerrar sesión / Cambiar cuenta
             </button>
           </SignOutButton>
