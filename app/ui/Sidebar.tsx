@@ -97,11 +97,11 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       <div className="px-6 py-8 border-b border-white/10 flex items-center justify-between">
         <div>
           <p className="font-serif text-2xl text-[#f5f3ef] tracking-wide">Infusio</p>
-          <p className="text-xs tracking-[0.2em] text-white/40 uppercase mt-1">Analytics</p>
+          <p className="text-xs tracking-[0.2em] text-white/70 uppercase mt-1">Analytics</p>
         </div>
         <button
           onClick={onClose}
-          className="p-1 rounded-lg text-white/50 hover:text-[#f5f3ef] lg:hidden transition-colors"
+          className="p-1 rounded-lg text-white/70 hover:text-[#f5f3ef] lg:hidden transition-colors"
           aria-label="Cerrar menú"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
@@ -121,7 +121,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
                 isActive
                   ? "bg-white/15 text-[#f5f3ef]"
-                  : "text-white/50 hover:text-[#f5f3ef] hover:bg-white/10"
+                  : "text-white/70 hover:text-[#f5f3ef] hover:bg-white/10"
               }`}
             >
               {item.icon}
@@ -143,8 +143,8 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       </div>
 
       <div className="px-6 py-6 border-t border-white/10">
-        <p className="text-xs text-white/50 tracking-[0.15em] uppercase">Ecosistema Infusio</p>
-        <p className="text-xs text-white/40 mt-1">v1.0 · IAW 2026</p>
+        <p className="text-xs text-white/70 tracking-[0.15em] uppercase">Ecosistema Infusio</p>
+        <p className="text-xs text-white/60 mt-1">v1.0 · IAW 2026</p>
       </div>
     </aside>
   );

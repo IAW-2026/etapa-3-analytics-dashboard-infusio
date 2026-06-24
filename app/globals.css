@@ -25,6 +25,8 @@
   --brown: #2d2926;
   --white-bg: #ffffff;
   --sidebar-bg: #4a453d;
+  --olive: #6b7056;
+  --terracotta: #9b4a30;
 }
 
 .dark {
@@ -52,6 +54,8 @@
   --brown: #f3f0ea;
   --white-bg: #1c1a18;
   --sidebar-bg: #1a1816;
+  --olive: #a4ad8a;
+  --terracotta: #d4916e;
 }
 
 @theme inline {
@@ -74,8 +78,8 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-olive: #6b7056;
-  --color-terracotta: #9b4a30;
+  --color-olive: var(--olive);
+  --color-terracotta: var(--terracotta);
 
   /* Map branding classes to custom CSS variables */
   --color-cream: var(--cream);
@@ -163,10 +167,10 @@
   color: #60a5fa !important;
 }
 .dark .bg-olive\/10 {
-  background-color: rgba(148, 156, 121, 0.2) !important;
+  background-color: rgba(164, 173, 138, 0.2) !important;
 }
-.dark .text-olive {
-  color: #a4ad8a !important; /* Lighter high contrast olive */
+.dark .bg-terracotta\/10 {
+  background-color: rgba(212, 145, 110, 0.15) !important;
 }
 .dark .bg-\[\#f4f1ea\] {
   background-color: var(--tan) !important; /* Adapt progress bar background in status page */
