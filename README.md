@@ -43,4 +43,44 @@ El Analytics Dashboard es una herramienta de reportes consolidados que centraliz
 
 ---
 
+## Buenas prácticas y Optimización
+
+Se aplicaron múltiples optimizaciones para garantizar una experiencia de usuario fluida, accesible y de alto rendimiento. En las auditorías de **Lighthouse**, la aplicación alcanza las siguientes métricas promedio:
+
+- **Performance:** 90+
+- **Accesibilidad:** 100
+- **Best Practices:** 96+
+- **SEO:** 100
+
+### Optimizaciones implementadas:
+
+1. **Lazy Loading de Gráficos (Performance):** Recharts es una biblioteca muy pesada que puede bloquear el hilo principal (incrementando el Total Blocking Time en mobile). Se implementó un componente especializado (`LazySection`) usando `IntersectionObserver` y carga dinámica de Next.js (`next/dynamic`) para diferir la descarga y ejecución del JavaScript de los gráficos hasta que el usuario hace scroll y entran en el viewport.
+2. **Accesibilidad y ARIA (A11y 100%):** 
+   - Todos los gráficos interactivos están envueltos en contenedores con `role="figure"` y sus respectivos `aria-label`.
+   - Modales, menús y sidebars implementan controles de teclado (Eventos Escape) y landmarks semánticos.
+   - Las barras de estado implementan `role="progressbar"` y valores paramétricos.
+3. **Contraste WCAG AA:** Los colores del sistema fueron minuciosamente ajustados en ambos modos (Claro y Oscuro) para pasar la validación de contraste estricto (4.5:1). Por ejemplo, el texto blanco sobre fondos claros se ajusta a un texto oscuro en dark-mode dinámicamente.
+4. **Optimización de Fuentes y Layout Shifting:** Se agregó `display: "swap"` a las fuentes para evitar FOUT/FOIT, y dimensiones pre-definidas en los skeletons de carga para reducir el Cumulative Layout Shift (CLS) a cero.
+5. **Aislamiento de Carga (Server/Client):** Las librerías de reportes pesadas como `@react-pdf/renderer` y `groq-sdk` corren exclusivamente del lado del servidor (API Routes) para no saturar el bundle del cliente.
+
+### 📱 Mobile
+
+- **Performance:** 95
+- **Accesibilidad:** 100
+- **Best Practices:** 96
+- **SEO:** 100
+
+![Métricas de Lighthouse Mobile](image.png)
+
+### 💻 Desktop
+
+- **Performance:** 96
+- **Accesibilidad:** 100
+- **Best Practices:** 100
+- **SEO:** 100
+
+![Métricas de Lighthouse Desktop](image-1.png)
+
+---
+
 Enunciado completo: <https://iaw-2026.github.io/proyecto/>
