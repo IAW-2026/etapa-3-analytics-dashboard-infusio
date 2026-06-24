@@ -5,6 +5,7 @@ import {
   DynamicOrderStatusPieChart,
   DynamicWeeklyVolumeChart,
 } from "@/app/ui/DynamicCharts";
+import LazySection from "@/app/ui/LazySection";
 import { getBuyerAnalytics, getOrderStatusData, getWeeklyRevenue } from "@/app/lib/services/buyerApi";
 import { getSellerStats } from "@/app/lib/services/sellerApi";
 import { getShippingStats } from "@/app/lib/services/shippingApi";
@@ -99,28 +100,30 @@ export default async function DashboardPage() {
         </div>
       </section>
 
-      {/* Charts */}
-      <section>
-        <h2 className="text-sm tracking-[0.15em] text-muted-foreground uppercase font-semibold mb-4">
-          Visualizaciones
-        </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <DynamicRevenueAreaChart data={revenueTimeSeries.daily} />
-          <DynamicOrderStatusPieChart data={orderStatusData} />
-          <DynamicRevenueAreaChart
-            data={revenueTimeSeries.monthly.map((m) => ({ date: m.month, revenue: m.revenue }))}
-            title="Ingresos mensuales"
-            subtitle="Últimos 12 meses"
-          />
-          <DynamicWeeklyVolumeChart
-            data={weeklyRevenue}
-            title="Ingresos semanales"
-            subtitle="Últimas 13 semanas"
-            valueLabel="Ingresos"
-            format="currency"
-          />
-        </div>
-      </section>
+      {/* Charts — lazy loaded to reduce TBT on mobile */}
+      <LazySection minHeight={580}>
+        <section>
+          <h2 className="text-sm tracking-[0.15em] text-muted-foreground uppercase font-semibold mb-4">
+            Visualizaciones
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <DynamicRevenueAreaChart data={revenueTimeSeries.daily} />
+            <DynamicOrderStatusPieChart data={orderStatusData} />
+            <DynamicRevenueAreaChart
+              data={revenueTimeSeries.monthly.map((m) => ({ date: m.month, revenue: m.revenue }))}
+              title="Ingresos mensuales"
+              subtitle="Últimos 12 meses"
+            />
+            <DynamicWeeklyVolumeChart
+              data={weeklyRevenue}
+              title="Ingresos semanales"
+              subtitle="Últimas 13 semanas"
+              valueLabel="Ingresos"
+              format="currency"
+            />
+          </div>
+        </section>
+      </LazySection>
 
       {/* Top Products */}
       <section>

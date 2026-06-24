@@ -2,6 +2,7 @@ import KpiCard from "@/app/ui/KpiCard";
 import AppBadge from "@/app/ui/AppBadge";
 import { DynamicRevenueAreaChart, DynamicOrderStatusPieChart } from "@/app/ui/DynamicCharts";
 import { getBuyerAnalytics, getOrderStatusData, getMonthlyRevenue } from "@/app/lib/services/buyerApi";
+import LazySection from "@/app/ui/LazySection";
 
 import { TopFavouritedProductsTable, TopCategoriesTable } from "@/app/ui/tables/UsersTable";
 
@@ -80,23 +81,25 @@ export default async function UsersPage() {
       </section>
 
       {/* Charts */}
-      <section>
-        <h2 className="text-sm tracking-[0.15em] text-muted-foreground uppercase font-semibold mb-4">
-          Análisis
-        </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <DynamicRevenueAreaChart
-            data={monthlyRevenue}
-            title="Ingresos mensuales"
-            subtitle="Últimos 12 meses"
-          />
-          <DynamicOrderStatusPieChart
-            data={orderStatusData}
-            title="Estado de pedidos"
-            subtitle="Comportamiento de compra"
-          />
-        </div>
-      </section>
+      <LazySection minHeight={340}>
+        <section>
+          <h2 className="text-sm tracking-[0.15em] text-muted-foreground uppercase font-semibold mb-4">
+            Análisis
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <DynamicRevenueAreaChart
+              data={monthlyRevenue}
+              title="Ingresos mensuales"
+              subtitle="Últimos 12 meses"
+            />
+            <DynamicOrderStatusPieChart
+              data={orderStatusData}
+              title="Estado de pedidos"
+              subtitle="Comportamiento de compra"
+            />
+          </div>
+        </section>
+      </LazySection>
 
       {/* Favourites tables */}
       <section>

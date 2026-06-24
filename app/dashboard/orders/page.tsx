@@ -2,6 +2,7 @@ import KpiCard from "@/app/ui/KpiCard";
 import AppBadge from "@/app/ui/AppBadge";
 import { DynamicOrderStatusPieChart, DynamicWeeklyVolumeChart } from "@/app/ui/DynamicCharts";
 import { getBuyerAnalytics, getOrderStatusData, getWeeklyRevenue } from "@/app/lib/services/buyerApi";
+import LazySection from "@/app/ui/LazySection";
 
 import OrdersTable from "@/app/ui/tables/OrdersTable";
 
@@ -61,25 +62,27 @@ export default async function OrdersPage() {
       </section>
 
       {/* Charts */}
-      <section>
-        <h2 className="text-sm tracking-[0.15em] text-muted-foreground uppercase font-semibold mb-4">
-          Análisis
-        </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <DynamicOrderStatusPieChart
-            data={orderStatusData}
-            title="Distribución de estados"
-            subtitle="Acumulado histórico"
-          />
-          <DynamicWeeklyVolumeChart
-            data={weeklyRevenue}
-            title="Ingresos semanales"
-            subtitle="Últimas 13 semanas"
-            valueLabel="Ingresos"
-            format="currency"
-          />
-        </div>
-      </section>
+      <LazySection minHeight={340}>
+        <section>
+          <h2 className="text-sm tracking-[0.15em] text-muted-foreground uppercase font-semibold mb-4">
+            Análisis
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <DynamicOrderStatusPieChart
+              data={orderStatusData}
+              title="Distribución de estados"
+              subtitle="Acumulado histórico"
+            />
+            <DynamicWeeklyVolumeChart
+              data={weeklyRevenue}
+              title="Ingresos semanales"
+              subtitle="Últimas 13 semanas"
+              valueLabel="Ingresos"
+              format="currency"
+            />
+          </div>
+        </section>
+      </LazySection>
 
       {/* Top products by orders */}
       <section>

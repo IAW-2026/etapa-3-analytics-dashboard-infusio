@@ -10,6 +10,7 @@ import {
   getPaymentsAnalyticsData,
 } from "@/app/lib/services/paymentsApi";
 import PaymentsTable from "@/app/ui/tables/PaymentsTable";
+import LazySection from "@/app/ui/LazySection";
 
 export default async function PaymentsPage() {
   const [stats, recentDisputes, analyticsData] = await Promise.all([
@@ -61,23 +62,25 @@ export default async function PaymentsPage() {
       </section>
 
       {/* Charts */}
-      <section>
-        <h2 className="text-sm tracking-[0.15em] text-muted-foreground uppercase font-semibold mb-4">
-          Análisis
-        </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <DynamicRevenueAreaChart
-            data={monthlyRevenue}
-            title="Historial de ingresos"
-            subtitle="Últimos 6 meses"
-          />
-          <DynamicOrderStatusPieChart
-            data={statusDistribution}
-            title="Distribución de transacciones"
-            subtitle="Por estado de pago"
-          />
-        </div>
-      </section>
+      <LazySection minHeight={340}>
+        <section>
+          <h2 className="text-sm tracking-[0.15em] text-muted-foreground uppercase font-semibold mb-4">
+            Análisis
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <DynamicRevenueAreaChart
+              data={monthlyRevenue}
+              title="Historial de ingresos"
+              subtitle="Últimos 6 meses"
+            />
+            <DynamicOrderStatusPieChart
+              data={statusDistribution}
+              title="Distribución de transacciones"
+              subtitle="Por estado de pago"
+            />
+          </div>
+        </section>
+      </LazySection>
 
       {/* Recent Payments Table */}
       <section>

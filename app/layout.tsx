@@ -31,17 +31,11 @@ export default function RootLayout({
     <ClerkProvider afterSignOutUrl="/sign-in">
       <html lang="es" className={`${inter.variable} ${playfair.variable}`} data-scroll-behavior="smooth" suppressHydrationWarning>
         <head>
+          <link rel="dns-prefetch" href="https://clerk.com" />
+          <link rel="preconnect" href="https://clerk.com" crossOrigin="anonymous" />
           <script
             dangerouslySetInnerHTML={{
-              __html: `
-                try {
-                  if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                    document.documentElement.classList.add('dark')
-                  } else {
-                    document.documentElement.classList.remove('dark')
-                  }
-                } catch (_) {}
-              `,
+              __html: `try{var d=document.documentElement.classList,t=localStorage.getItem('theme');(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))?d.add('dark'):d.remove('dark')}catch(e){}`,
             }}
           />
         </head>

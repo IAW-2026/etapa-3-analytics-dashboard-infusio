@@ -16,6 +16,7 @@ function stockStatus(stock: number) {
 }
 
 import ProductsTable from "@/app/ui/tables/ProductsTable";
+import LazySection from "@/app/ui/LazySection";
 
 export default async function ProductsPage() {
   const [stats, topProducts, productList, categoryData] = await Promise.all([
@@ -45,15 +46,17 @@ export default async function ProductsPage() {
       </section>
 
       {/* Charts */}
-      <section>
-        <h2 className="text-sm tracking-[0.15em] text-muted-foreground uppercase font-semibold mb-4">
-          Análisis
-        </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <DynamicTopProductsChart data={topProducts} />
-          <DynamicCategoryRevenueChart data={categoryData} />
-        </div>
-      </section>
+      <LazySection minHeight={340}>
+        <section>
+          <h2 className="text-sm tracking-[0.15em] text-muted-foreground uppercase font-semibold mb-4">
+            Análisis
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <DynamicTopProductsChart data={topProducts} />
+            <DynamicCategoryRevenueChart data={categoryData} />
+          </div>
+        </section>
+      </LazySection>
 
       {/* Table */}
       <section>

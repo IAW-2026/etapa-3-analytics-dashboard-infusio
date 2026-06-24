@@ -19,6 +19,7 @@ const SHIPMENT_LABELS: Record<string, string> = {
 
 import ShippingTable from "@/app/ui/tables/ShippingTable";
 import RidersTable from "@/app/ui/tables/RidersTable";
+import LazySection from "@/app/ui/LazySection";
 
 export default async function ShippingPage() {
   const [stats, recentShipments, statusData, deliveryTimeData, riders] = await Promise.all([
@@ -55,15 +56,17 @@ export default async function ShippingPage() {
       </section>
 
       {/* Charts */}
-      <section>
-        <h2 className="text-sm tracking-[0.15em] text-muted-foreground uppercase font-semibold mb-4">
-          Análisis
-        </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <DynamicShippingStatusChart data={statusData} successRate={stats.successRate} />
-          <DynamicDeliveryTimeChart data={deliveryTimeData} />
-        </div>
-      </section>
+      <LazySection minHeight={340}>
+        <section>
+          <h2 className="text-sm tracking-[0.15em] text-muted-foreground uppercase font-semibold mb-4">
+            Análisis
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <DynamicShippingStatusChart data={statusData} successRate={stats.successRate} />
+            <DynamicDeliveryTimeChart data={deliveryTimeData} />
+          </div>
+        </section>
+      </LazySection>
 
       {/* Table */}
       <section>
