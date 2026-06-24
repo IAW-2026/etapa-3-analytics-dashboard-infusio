@@ -2,7 +2,7 @@ import { SignIn } from "@clerk/nextjs";
 
 export default function SignInPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-cream font-inter">
+    <main className="min-h-screen flex items-center justify-center bg-cream font-inter">
       <div className="max-w-md w-full flex flex-col items-center">
         <div className="text-center mb-6">
           <h1 className="font-serif text-3xl text-brown mb-1">
@@ -14,6 +14,6 @@ export default function SignInPage() {
         </div>
         <SignIn fallbackRedirectUrl="/dashboard" signUpUrl="/sign-up" />
       </div>
-    </div>
+    </main>
   );
 }

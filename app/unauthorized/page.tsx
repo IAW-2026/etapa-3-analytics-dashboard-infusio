@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function UnauthorizedPage() {
   return (
-    <div className="min-h-screen bg-cream flex items-center justify-center px-4 font-inter">
+    <main className="min-h-screen bg-cream flex items-center justify-center px-4 font-inter">
       <div className="max-w-md w-full bg-white rounded-3xl border border-tan p-8 sm:p-10 shadow-sm text-center">
         {/* Shield/Lock icon */}
         <div className="mx-auto w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mb-6">
@@ -33,7 +33,7 @@ export default function UnauthorizedPage() {
 
         <div className="flex flex-col gap-3">
           <SignOutButton signOutOptions={{ redirectUrl: "/" }}>
-            <button className="w-full bg-olive text-white px-5 py-3 rounded-2xl font-medium shadow-sm hover:bg-olive/90 transition-all cursor-pointer">
+            <button className="w-full bg-olive text-white px-5 py-3 rounded-2xl font-medium shadow-sm hover:bg-olive/90 transition-colors cursor-pointer">
               Cerrar sesión / Cambiar cuenta
             </button>
           </SignOutButton>
@@ -43,6 +43,6 @@ export default function UnauthorizedPage() {
           </Link>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

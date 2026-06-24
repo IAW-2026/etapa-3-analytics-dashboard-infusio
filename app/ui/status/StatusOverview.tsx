@@ -48,11 +48,12 @@ export default function StatusOverview({ mocksEnabled, timestamp, services }: St
         <p className="text-lg font-bold text-brown mt-1">
           {onlineCount} / {services.length}
         </p>
-        <div className="w-full bg-[#f4f1ea] rounded-full h-1.5 mt-2">
+        <div className="w-full bg-[#f4f1ea] rounded-full h-1.5 mt-2 overflow-hidden">
           <div
-            className="bg-olive h-1.5 rounded-full transition-all duration-500"
+            className="bg-olive h-1.5 rounded-full origin-left transition-transform duration-500"
             style={{
-              width: `${(onlineCount / services.length) * 100}%`,
+              width: "100%",
+              transform: `scaleX(${onlineCount / services.length})`,
             }}
           />
         </div>
