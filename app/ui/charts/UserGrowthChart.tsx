@@ -25,7 +25,7 @@ interface Props {
 
 export default function UserGrowthChart({ data }: Props) {
   return (
-    <div className="bg-white rounded-2xl border border-tan p-6 shadow-sm">
+    <div className="bg-white rounded-2xl border border-tan p-6 shadow-sm" role="figure" aria-label="Crecimiento de usuarios">
       <h3 className="text-sm font-medium text-brown">Crecimiento de usuarios</h3>
       <p className="text-xs tracking-[0.15em] text-muted-foreground uppercase mt-0.5 mb-5">
         Últimas 26 semanas

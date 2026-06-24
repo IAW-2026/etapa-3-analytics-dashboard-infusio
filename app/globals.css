@@ -10,7 +10,7 @@
   --secondary: #d4cfc5;
   --secondary-foreground: #2d2926;
   --muted: #e8e4dd;
-  --muted-foreground: #6b6560;
+  --muted-foreground: #5c5752;
   --accent: #9b4a30;
   --accent-foreground: #ffffff;
   --destructive: #dc2626;
@@ -93,9 +93,7 @@
     box-sizing: border-box;
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
+
 
   body {
     background-color: var(--background);

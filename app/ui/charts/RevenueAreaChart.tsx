@@ -30,7 +30,7 @@ export default function RevenueAreaChart({
   subtitle = "Últimos 30 días",
 }: Props) {
   return (
-    <div className="bg-white rounded-2xl border border-tan p-6 shadow-sm">
+    <div className="bg-white rounded-2xl border border-tan p-6 shadow-sm" role="figure" aria-label={title}>
       <h3 className="text-sm font-medium text-brown">{title}</h3>
       <p className="text-xs tracking-[0.15em] text-muted-foreground uppercase mt-0.5 mb-5">
         {subtitle}

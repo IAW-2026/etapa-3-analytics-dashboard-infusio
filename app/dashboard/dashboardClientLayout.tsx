@@ -14,6 +14,10 @@ export default function DashboardClientLayout({ children }: { children: React.Re
         <div
           className="fixed inset-0 bg-black/40 z-30 lg:hidden transition-opacity"
           onClick={() => setSidebarOpen(false)}
+          onKeyDown={(e) => { if (e.key === 'Escape') setSidebarOpen(false); }}
+          role="button"
+          aria-label="Cerrar menú lateral"
+          tabIndex={0}
         />
       )}
 

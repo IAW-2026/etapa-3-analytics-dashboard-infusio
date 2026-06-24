@@ -92,6 +92,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       className={`fixed top-0 left-0 h-screen w-64 bg-sidebar flex flex-col z-40 transition-transform duration-300 ${
         isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
       }`}
+      aria-label="Menú de navegación principal"
     >
       <div className="px-6 py-8 border-b border-white/10 flex items-center justify-between">
         <div>
@@ -109,7 +110,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         </button>
       </div>
 
-      <nav className="flex-1 px-3 py-6 flex flex-col gap-1">
+      <nav className="flex-1 px-3 py-6 flex flex-col gap-1" aria-label="Navegación del dashboard">
         {NAV_ITEMS.map((item) => {
           const isActive = pathname === item.href;
           return (
@@ -142,8 +143,8 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       </div>
 
       <div className="px-6 py-6 border-t border-white/10">
-        <p className="text-xs text-white/30 tracking-[0.15em] uppercase">Ecosistema Infusio</p>
-        <p className="text-xs text-white/20 mt-1">v1.0 · IAW 2026</p>
+        <p className="text-xs text-white/50 tracking-[0.15em] uppercase">Ecosistema Infusio</p>
+        <p className="text-xs text-white/40 mt-1">v1.0 · IAW 2026</p>
       </div>
     </aside>
   );

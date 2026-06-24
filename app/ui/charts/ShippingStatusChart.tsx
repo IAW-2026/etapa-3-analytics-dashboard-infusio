@@ -24,7 +24,7 @@ export default function ShippingStatusChart({ data, successRate }: Props) {
   const total = data.reduce((s, d) => s + d.count, 0);
 
   return (
-    <div className="bg-white rounded-2xl border border-tan p-6 shadow-sm">
+    <div className="bg-white rounded-2xl border border-tan p-6 shadow-sm" role="figure" aria-label="Estado de envíos">
       <div className="flex items-start justify-between">
         <div>
           <h3 className="text-sm font-medium text-brown">Estado de envíos</h3>

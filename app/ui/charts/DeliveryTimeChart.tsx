@@ -24,7 +24,7 @@ interface Props {
 
 export default function DeliveryTimeChart({ data }: Props) {
   return (
-    <div className="bg-white rounded-2xl border border-tan p-6 shadow-sm">
+    <div className="bg-white rounded-2xl border border-tan p-6 shadow-sm" role="figure" aria-label="Envíos mensuales">
       <h3 className="text-sm font-medium text-brown">Envíos mensuales</h3>
       <p className="text-xs tracking-[0.15em] text-muted-foreground uppercase mt-0.5 mb-5">
         Histórico mensual

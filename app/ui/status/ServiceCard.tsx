@@ -62,7 +62,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
           <div className="flex items-center gap-2">
             <span className={`h-2.5 w-2.5 rounded-full ${
               isOnline ? "bg-olive animate-pulse" : isMocked ? "bg-amber-500" : "bg-red-500"
-            }`} />
+            }`} aria-hidden="true" />
             <span className={`text-xs font-semibold tracking-wider uppercase ${
               isOnline ? "text-olive" : isMocked ? "text-amber-600" : "text-red-600"
             }`}>

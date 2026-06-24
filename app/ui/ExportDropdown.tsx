@@ -21,6 +21,9 @@ export default function ExportDropdown() {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-haspopup="true"
+        aria-label="Exportar datos"
         className="inline-flex items-center gap-1.5 text-xs tracking-[0.15em] uppercase font-medium text-brown hover:text-terracotta transition-colors"
       >
         Exportar

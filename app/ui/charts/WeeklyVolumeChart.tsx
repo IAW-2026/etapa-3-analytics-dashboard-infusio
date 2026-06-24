@@ -47,7 +47,7 @@ export default function WeeklyVolumeChart({
   const filtered = data.slice(-RANGES[range].weeks);
 
   return (
-    <div className="bg-white rounded-2xl border border-tan p-6 shadow-sm">
+    <div className="bg-white rounded-2xl border border-tan p-6 shadow-sm" role="figure" aria-label={title}>
       <div className="flex items-start justify-between mb-5">
         <div>
           <h3 className="text-sm font-medium text-brown">{title}</h3>

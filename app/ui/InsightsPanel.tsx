@@ -259,7 +259,7 @@ export default function InsightsPanel({ data }: Props) {
                 </span>
                 <h3 className="text-sm font-semibold text-brown">{section.heading}</h3>
               </div>
-              <div>{renderBody(section.body)}</div>
+              <div role="article">{renderBody(section.body)}</div>
             </div>
           ))}
         </div>

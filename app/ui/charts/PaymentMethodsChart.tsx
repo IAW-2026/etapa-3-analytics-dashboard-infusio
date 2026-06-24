@@ -22,7 +22,7 @@ interface Props {
 
 export default function PaymentMethodsChart({ data }: Props) {
   return (
-    <div className="bg-white rounded-2xl border border-tan p-6 shadow-sm">
+    <div className="bg-white rounded-2xl border border-tan p-6 shadow-sm" role="figure" aria-label="Métodos de pago">
       <h3 className="text-sm font-medium text-brown">Métodos de pago</h3>
       <p className="text-xs tracking-[0.15em] text-muted-foreground uppercase mt-0.5 mb-5">
         Distribución de transacciones

@@ -48,7 +48,7 @@ export default function StatusOverview({ mocksEnabled, timestamp, services }: St
         <p className="text-lg font-bold text-brown mt-1">
           {onlineCount} / {services.length}
         </p>
-        <div className="w-full bg-[#f4f1ea] rounded-full h-1.5 mt-2 overflow-hidden">
+        <div className="w-full bg-[#f4f1ea] rounded-full h-1.5 mt-2 overflow-hidden" role="progressbar" aria-valuenow={onlineCount} aria-valuemin={0} aria-valuemax={services.length} aria-label={`${onlineCount} de ${services.length} servicios online`}>
           <div
             className="bg-olive h-1.5 rounded-full origin-left transition-transform duration-500"
             style={{

@@ -27,7 +27,7 @@ export default function DisputesTrendChart({ data }: Props) {
   const avg = Math.round(data.reduce((s, d) => s + d.count, 0) / data.length);
 
   return (
-    <div className="bg-white rounded-2xl border border-tan p-6 shadow-sm">
+    <div className="bg-white rounded-2xl border border-tan p-6 shadow-sm" role="figure" aria-label="Evolución de disputas">
       <div className="flex items-start justify-between mb-5">
         <div>
           <h3 className="text-sm font-medium text-brown">Evolución de disputas</h3>
